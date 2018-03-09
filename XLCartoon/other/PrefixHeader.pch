@@ -1,0 +1,43 @@
+//
+//  PrefixHeader.pch
+//  XLGame
+//
+//  Created by yuchutian on 2017/9/29.
+//  Copyright © 2017年 In.于楚天. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Api.h"
+#import "GlobalDefines.h"
+#import "AppDelegate.h"
+
+
+// SDk
+#import "AFNetworking.h"
+#import "SDAutoLayout.h"
+#import "MJRefresh.h"
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
+#import <SVProgressHUD.h>
+#import <YYModel.h>
+#import <MJExtension.h>
+#import <UIImageView+WebCache.h>
+
+ // 工具类
+#import "MJGifHeader.h"
+#import "AfnManager.h"
+#import "UIResponder+Custom.h"
+
+
+#endif
+
+#endif /* PrefixHeader_pch */

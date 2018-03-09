@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="everyDayShowView">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="404"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5K-Ji-8Wr" userLabel="BackVIew">
+                    <rect key="frame" x="0.0" y="84" width="230" height="320"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首登奖励" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCY-RQ-AKP">
+                            <rect key="frame" x="66" y="30" width="98" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="98" id="7qs-Iu-d82"/>
+                                <constraint firstAttribute="height" constant="21" id="Iln-sP-ko8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.96078431372549022" green="0.72549019607843135" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="everyDayTask" translatesAutoresizingMaskIntoConstraints="NO" id="dqv-CS-igd">
+                            <rect key="frame" x="15" y="63" width="200" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="1KY-YD-pjx"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收藏更新" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTN-G1-cPg">
+                            <rect key="frame" x="66" y="191" width="98" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyj-H7-aNo">
+                            <rect key="frame" x="16" y="148" width="198" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.72549019607843135" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="领取奖励">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEw-a6-scE">
+                            <rect key="frame" x="14" y="219" width="200" height="85"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="dqv-CS-igd" secondAttribute="trailing" constant="15" id="06t-X7-eNG"/>
+                        <constraint firstItem="dqv-CS-igd" firstAttribute="top" secondItem="sCY-RQ-AKP" secondAttribute="bottom" constant="12" id="Bwb-Jy-sND"/>
+                        <constraint firstItem="sCY-RQ-AKP" firstAttribute="centerX" secondItem="Y5K-Ji-8Wr" secondAttribute="centerX" id="O0o-UP-FHr"/>
+                        <constraint firstItem="dqv-CS-igd" firstAttribute="leading" secondItem="Y5K-Ji-8Wr" secondAttribute="leading" constant="15" id="akv-pb-MJx"/>
+                        <constraint firstItem="sCY-RQ-AKP" firstAttribute="top" secondItem="Y5K-Ji-8Wr" secondAttribute="top" constant="30" id="ldy-ts-dwf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="everyDayIcon" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-Ca-s0V">
+                    <rect key="frame" x="65" y="0.0" width="108" height="108"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="108" id="Ev0-t9-3Vq"/>
+                        <constraint firstAttribute="height" constant="108" id="dnq-Mz-lS9"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2r-zl-RMv">
+                    <rect key="frame" x="94" y="89" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="EQi-yd-nuR"/>
+                        <constraint firstAttribute="height" constant="21" id="IHo-zo-TTO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.96078431372549022" green="0.72549019607843135" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qWO-Ca-s0V" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0hJ-xJ-cxt"/>
+                <constraint firstItem="i2r-zl-RMv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="94" id="3Vq-jb-ZsL"/>
+                <constraint firstItem="i2r-zl-RMv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="89" id="Fmn-hh-SdI"/>
+                <constraint firstItem="Y5K-Ji-8Wr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="84" id="KHh-pB-5bE"/>
+                <constraint firstAttribute="bottom" secondItem="Y5K-Ji-8Wr" secondAttribute="bottom" id="RR0-ow-woe"/>
+                <constraint firstItem="Y5K-Ji-8Wr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zw6-uR-2Fl"/>
+                <constraint firstAttribute="trailing" secondItem="Y5K-Ji-8Wr" secondAttribute="trailing" id="kbY-KW-9tw"/>
+                <constraint firstItem="qWO-Ca-s0V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="65" id="oqb-DQ-FZ7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addMoneyImageView" destination="dqv-CS-igd" id="vOy-v6-P62"/>
+                <outlet property="backVIew" destination="Y5K-Ji-8Wr" id="8LS-g8-Z1c"/>
+                <outlet property="btn" destination="oyj-H7-aNo" id="D5V-TQ-49h"/>
+                <outlet property="btnView" destination="UEw-a6-scE" id="5F3-fB-Yzv"/>
+                <outlet property="updateTipLabel" destination="WTN-G1-cPg" id="gKQ-CB-KQ3"/>
+            </connections>
+            <point key="canvasLocation" x="-169" y="-135"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="everyDayIcon" width="236" height="225"/>
+        <image name="everyDayTask" width="422" height="160"/>
+    </resources>
+</document>

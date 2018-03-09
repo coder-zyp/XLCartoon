@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="LockCartoonCell" selectionStyle="none" indentationWidth="10" rowHeight="653" id="KGk-i7-Jjw" customClass="LockCartoonCell">
+            <rect key="frame" x="0.0" y="0.0" width="465" height="653"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="465" height="652.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一话" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWf-rf-s74">
+                        <rect key="frame" x="0.0" y="78.5" width="465" height="23"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-5p-LRj">
+                        <rect key="frame" x="62.5" y="181.5" width="340" height="290"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="阅读此话需要50咔咔豆" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJK-7q-bn4">
+                                <rect key="frame" x="34" y="8" width="275" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="咔咔豆余额：1642" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-yM-ehf">
+                                <rect key="frame" x="25" y="122" width="284" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gx-hw-Dg9">
+                                <rect key="frame" x="25" y="180" width="284" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.59607843140000005" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="消费35咔咔豆解锁">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="unlockBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GVN-rQ-v2T"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="vip仅需：35咔咔豆" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-Vn-mUC">
+                                <rect key="frame" x="30" y="51" width="275" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.1690496303" blue="0.28965680710000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHA-T3-ELK">
+                                <rect key="frame" x="205" y="239" width="15" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_n"/>
+                                <state key="selected" image="btn_s"/>
+                                <state key="highlighted" image="btn_s"/>
+                                <connections>
+                                    <action selector="autoBuyBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Kyf-xy-7nw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJc-Nz-mxR">
+                                <rect key="frame" x="274" y="131" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="addKakaBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pO2-lf-Pmk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWU-Sp-xM9">
+                                <rect key="frame" x="223" y="233" width="86" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="自动购买下一话">
+                                    <color key="titleColor" red="0.094754663059999994" green="0.094754663059999994" blue="0.094754663059999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.094754663059999994" green="0.094754663059999994" blue="0.094754663059999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="autoBuyBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cP6-I3-nqe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="290" id="eG4-dv-vkL"/>
+                            <constraint firstAttribute="width" constant="340" id="eNE-Og-WJx"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-h9-YS4">
+                        <rect key="frame" x="0.0" y="632" width="465" height="20"/>
+                        <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="pQH-F3-JJA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="GbW-h9-YS4" secondAttribute="trailing" id="3XJ-a9-QAS"/>
+                    <constraint firstItem="ed2-5p-LRj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DgN-ne-It8"/>
+                    <constraint firstItem="DWf-rf-s74" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MRF-Aa-SaT"/>
+                    <constraint firstItem="GbW-h9-YS4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tyl-2u-wBX"/>
+                    <constraint firstAttribute="trailing" secondItem="DWf-rf-s74" secondAttribute="trailing" id="eBb-j4-M5E"/>
+                    <constraint firstAttribute="bottom" secondItem="GbW-h9-YS4" secondAttribute="bottom" id="iDF-o8-a0z"/>
+                    <constraint firstItem="ed2-5p-LRj" firstAttribute="top" secondItem="DWf-rf-s74" secondAttribute="bottom" constant="80" id="oTT-hD-3Lv"/>
+                    <constraint firstItem="ed2-5p-LRj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="tbt-PW-Mwb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="autoBuyBtn" destination="pHA-T3-ELK" id="XaJ-vY-MOI"/>
+                <outlet property="myKakaLabel" destination="Mmf-yM-ehf" id="mtl-Sy-ifD"/>
+                <outlet property="needKakaLabel" destination="PJK-7q-bn4" id="rC8-f2-PA7"/>
+                <outlet property="titleLabel" destination="DWf-rf-s74" id="f6o-A7-7gp"/>
+                <outlet property="unlockBtn" destination="9gx-hw-Dg9" id="hjb-Vr-NCz"/>
+                <outlet property="vipNeedLabel" destination="bJY-Vn-mUC" id="VbL-Ly-wGy"/>
+            </connections>
+            <point key="canvasLocation" x="-161.5" y="36.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_n" width="30" height="30"/>
+        <image name="btn_s" width="30" height="30"/>
+    </resources>
+</document>

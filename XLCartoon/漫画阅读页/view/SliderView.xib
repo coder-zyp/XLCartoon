@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SliderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nt-pt-WbU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <connections>
+                        <action selector="dismissBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="oMz-lm-L1c"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Zx-hp-0tj">
+                    <rect key="frame" x="0.0" y="667" width="375" height="50"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.20000000000000001" maxValue="1" minimumValueImage="reading-亮度-small" maximumValueImage="reading-亮度" translatesAutoresizingMaskIntoConstraints="NO" id="CHV-av-Ovh" customClass="ASValueTrackingSlider">
+                            <rect key="frame" x="18" y="9.5" width="339" height="31"/>
+                            <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </slider>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="CHV-av-Ovh" firstAttribute="leading" secondItem="4Zx-hp-0tj" secondAttribute="leading" constant="20" id="P2b-pH-WbD"/>
+                        <constraint firstAttribute="height" constant="50" id="cY0-3D-UO8"/>
+                        <constraint firstAttribute="trailing" secondItem="CHV-av-Ovh" secondAttribute="trailing" constant="20" id="jr6-gW-kkg"/>
+                        <constraint firstItem="CHV-av-Ovh" firstAttribute="centerY" secondItem="4Zx-hp-0tj" secondAttribute="centerY" id="lhC-Ro-F6E"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="0nt-pt-WbU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4rq-Jj-GUu"/>
+                <constraint firstItem="4Zx-hp-0tj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8cX-7j-QXC"/>
+                <constraint firstAttribute="trailing" secondItem="0nt-pt-WbU" secondAttribute="trailing" id="Azh-em-Ctn"/>
+                <constraint firstAttribute="trailing" secondItem="4Zx-hp-0tj" secondAttribute="trailing" id="Cd4-sW-k6g"/>
+                <constraint firstItem="0nt-pt-WbU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KNP-cC-j36"/>
+                <constraint firstAttribute="bottom" secondItem="0nt-pt-WbU" secondAttribute="bottom" id="WYQ-Or-l6a"/>
+                <constraint firstAttribute="bottom" secondItem="4Zx-hp-0tj" secondAttribute="bottom" constant="-50" id="xxm-Gq-gYX"/>
+            </constraints>
+            <connections>
+                <outlet property="slider" destination="CHV-av-Ovh" id="byF-N5-Zth"/>
+                <outlet property="viewBottomConstraint" destination="xxm-Gq-gYX" id="0b3-OL-Q0y"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="reading-亮度" width="15" height="15"/>
+        <image name="reading-亮度-small" width="10" height="10"/>
+    </resources>
+</document>

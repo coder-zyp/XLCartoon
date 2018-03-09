@@ -1,0 +1,129 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - ASValueTrackingSlider (0.12.1)
+  - DACircularProgress (2.3.1)
+  - DZNEmptyDataSet (1.8.1)
+  - IAPHelper (1.1)
+  - IDMPhotoBrowser (1.10.2):
+    - DACircularProgress
+    - pop
+    - SDWebImage
+  - IQKeyboardManager (5.0.7)
+  - JKCountDownButton (1.2.0)
+  - MBProgressHUD (1.1.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - OCBarrage (1.0.3)
+  - pop (1.0.10)
+  - PYSearch (0.8.8)
+  - SDAutoLayout (2.2.0)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.3.0):
+    - SDWebImage/Core (= 4.3.0)
+  - SDWebImage/Core (4.3.0)
+  - SlackTextViewController (1.9.6)
+  - SVProgressHUD (2.2.2)
+  - TZImagePickerController (2.0.0.2)
+  - UMCAnalytics (5.4.1):
+    - UMCCommon
+  - UMCCommon (1.4.1)
+  - UMCErrorCatch (1.0.0):
+    - UMCCommon
+  - UMCPush (3.0.1):
+    - UMCCommon
+  - UMengUShare/Core (6.4.8.1):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.8.1)
+  - UMengUShare/Social/ReducedQQ (6.4.8.1):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedSina (6.4.8.1):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.8.1):
+    - UMengUShare/Core
+  - UMengUShare/UI (6.4.8.1):
+    - UMengUShare/Core
+  - WMPageController (2.5.2)
+  - WRNavigationBar (1.2.0)
+  - YYModel (1.0.4)
+  - YYText (1.0.7)
+
+DEPENDENCIES:
+  - AFNetworking
+  - ASValueTrackingSlider
+  - DZNEmptyDataSet
+  - IAPHelper
+  - IDMPhotoBrowser
+  - IQKeyboardManager
+  - JKCountDownButton
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - OCBarrage
+  - PYSearch
+  - SDAutoLayout
+  - SDCycleScrollView
+  - SDWebImage
+  - SlackTextViewController
+  - SVProgressHUD
+  - TZImagePickerController
+  - UMCAnalytics
+  - UMCErrorCatch
+  - UMCPush
+  - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedSina
+  - UMengUShare/Social/ReducedWeChat
+  - UMengUShare/UI
+  - WMPageController
+  - WRNavigationBar (~> 1.2.0)
+  - YYModel
+  - YYText
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  ASValueTrackingSlider: 5261de3fcf00adb339efc93885e8f0bc99e703cd
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IAPHelper: fd74f53b0ac142eed085777b88b86a11746a2dd4
+  IDMPhotoBrowser: 4bb459b1faffc228e92bccdf7c54ad6d6b7e8c37
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  JKCountDownButton: cc72e24c8b73f232b15cc348277422b089d43bff
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  OCBarrage: 53aa52743a4879f98ee37b22d8595ac798e110d7
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  PYSearch: aa3704f283c67667808de6df514c24df03f5f116
+  SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
+  SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  TZImagePickerController: 650200f696e6d0b6b8f0cc4429b68be872ad0aa3
+  UMCAnalytics: 44e0bb2f442b7aaf97d1c924b58798b612f2c13d
+  UMCCommon: ed0b882a939c45850f6803a5837698572a3e9b96
+  UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
+  UMCPush: ab74d8141d0f82653112aa9f164a02eaf1e15f01
+  UMengUShare: 9e2d22f32aeaf09702ca833ec530895aab995c4f
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
+  WRNavigationBar: dc952230effbb646785f962587caaac06c60f229
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+
+PODFILE CHECKSUM: 46f7e628874875c01a1988a68ffb1dfecd3877e9
+
+COCOAPODS: 1.4.0

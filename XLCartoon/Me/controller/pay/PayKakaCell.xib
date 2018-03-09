@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PayCollectionViewControllerCell" id="gTV-IL-0wX" customClass="PayKakaCell">
+            <rect key="frame" x="0.0" y="0.0" width="253" height="93"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="253" height="93"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJa-x5-sXl">
+                        <rect key="frame" x="8" y="17.5" width="35" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200咔咔豆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhY-bu-avZ">
+                        <rect key="frame" x="8" y="56" width="80" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="W9h-sS-cFd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="bzH-Cp-x2l">
+                        <rect key="frame" x="225" y="3" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="O1W-tI-JEF"/>
+                            <constraint firstAttribute="height" constant="25" id="eMM-Yz-4cX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.9折" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="job-Bu-JBD">
+                        <rect key="frame" x="93" y="56" width="35" height="18"/>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="qL6-mg-sUG"/>
+                            <constraint firstAttribute="height" constant="18" id="vwz-pq-grO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="uhY-bu-avZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="E4n-rW-dze"/>
+                <constraint firstAttribute="trailing" secondItem="bzH-Cp-x2l" secondAttribute="trailing" constant="3" id="Hhh-ca-c5A"/>
+                <constraint firstItem="job-Bu-JBD" firstAttribute="leading" secondItem="uhY-bu-avZ" secondAttribute="trailing" constant="5" id="S1a-GM-evj"/>
+                <constraint firstItem="job-Bu-JBD" firstAttribute="centerY" secondItem="uhY-bu-avZ" secondAttribute="centerY" id="eZo-0y-Flf"/>
+                <constraint firstItem="uhY-bu-avZ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.4" id="gBj-X9-Xz4"/>
+                <constraint firstItem="VJa-x5-sXl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="kaj-jJ-caP"/>
+                <constraint firstItem="bzH-Cp-x2l" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="oYt-WW-8Hp"/>
+                <constraint firstItem="VJa-x5-sXl" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="0.6" id="wzn-K6-1gu"/>
+            </constraints>
+            <size key="customSize" width="253" height="93"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="hotIcon" destination="bzH-Cp-x2l" id="DUC-gs-fsD"/>
+                <outlet property="moneyLabel" destination="VJa-x5-sXl" id="xmm-xG-VAJ"/>
+                <outlet property="productNameLabel" destination="uhY-bu-avZ" id="Lob-DY-C2V"/>
+                <outlet property="productNameWidth" destination="W9h-sS-cFd" id="osr-3n-VDl"/>
+                <outlet property="saleLabel" destination="job-Bu-JBD" id="dfi-pU-H1U"/>
+            </connections>
+            <point key="canvasLocation" x="-136.5" y="-23.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="hot" width="45" height="45"/>
+    </resources>
+</document>

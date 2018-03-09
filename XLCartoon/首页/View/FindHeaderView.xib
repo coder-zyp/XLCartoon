@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FindHeaderView" id="U6b-Vx-4bR" customClass="FindHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="534" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ey-W2-ozd">
+                    <rect key="frame" x="0.0" y="0.0" width="534" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="eUg-Ko-DDR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHG-AI-LnV">
+                    <rect key="frame" x="478" y="0.0" width="56" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Akg-CU-eng"/>
+                        <constraint firstAttribute="width" constant="56" id="vIP-Hq-KXM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
+                    <state key="normal" image="gengduoanniu">
+                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="6Ey-W2-ozd" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="DOR-B8-llm"/>
+                <constraint firstAttribute="bottom" secondItem="PHG-AI-LnV" secondAttribute="bottom" id="E5Z-wI-lJ7"/>
+                <constraint firstAttribute="bottom" secondItem="6Ey-W2-ozd" secondAttribute="bottom" id="KfJ-pm-Ehs"/>
+                <constraint firstAttribute="trailing" secondItem="PHG-AI-LnV" secondAttribute="trailing" id="Lqo-NH-Nhz"/>
+                <constraint firstAttribute="trailing" secondItem="6Ey-W2-ozd" secondAttribute="trailing" id="Sh1-ea-5vf"/>
+            </constraints>
+            <connections>
+                <outlet property="moreBtn" destination="PHG-AI-LnV" id="0Nr-Tl-B4O"/>
+                <outlet property="nameLabel" destination="6Ey-W2-ozd" id="4nb-vq-t9m"/>
+            </connections>
+            <point key="canvasLocation" x="-100" y="-67"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="gengduoanniu" width="46" height="20"/>
+    </resources>
+</document>
