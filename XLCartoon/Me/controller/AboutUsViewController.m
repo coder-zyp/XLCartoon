@@ -147,7 +147,12 @@
 
 - (void)GotiScoreAction:(id)sender
 {
-    static NSString * const reviewURL = @"itms-apps://itunes.apple.com/app/1346479687";
+    
+    NSString *reviewURL = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1346479687&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8";
+    if (@available(iOS 11.0, *)) {
+        reviewURL =  @"itms-apps://itunes.apple.com/cn/app/id1346479687?mt=8&action=write-review";
+    }
+//    static NSString * const reviewURL = @"itms-apps://itunes.apple.com/app/id1346479687?type=Purple+Software";
     [SVProgressHUD show];
     //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL] options:nil completionHandler:^(BOOL success) {

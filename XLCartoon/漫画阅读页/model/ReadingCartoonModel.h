@@ -39,7 +39,7 @@
 
 @property (nonatomic,assign) CGFloat heightTotal;
 @property (nonatomic,strong) NSArray <PhotoModel *> * photos;
-//@property (nonatomic,strong) ReadingCartoonSpare * spare;
+@property (nonatomic,strong) ReadingCartoonSpare * spare;
 @property (nonatomic,strong) NSArray < commentModel *> * commentModel;
 @property (nonatomic,strong) EpisodeModel * episodeModel;
 

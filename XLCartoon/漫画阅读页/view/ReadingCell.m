@@ -20,6 +20,7 @@
     ReadingCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell ==nil) {
         cell = [[ReadingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return cell;

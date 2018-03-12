@@ -21,5 +21,6 @@
 @property (nonatomic, weak) id <LockCartoonCellDelegate> delegate;
 @property (nonatomic, strong) ReadingCartoonModel * model;
 
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderImage;
 +(instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 @end

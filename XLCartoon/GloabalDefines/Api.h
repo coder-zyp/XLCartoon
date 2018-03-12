@@ -19,7 +19,7 @@
 
 
 
-//#define BASE_URL    @"http://192.168.1.39:8080/Comic/"
+#define BASE_URL    @"http://192.168.1.39:8080/Comic/"
 /***平台分享回调***/
 #define URL_SHARE_BACK BASE_URL @"app/back/share.do"
 /***漫画分享回调***/

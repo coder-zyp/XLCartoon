@@ -78,26 +78,30 @@
                              };
     [AfnManager postUserAction:URL_CARTOON_UNLOCK param:param Sucess:^(NSDictionary *responseObject) {
         [APP_DELEGATE getUserInfo];
-        
-        NSDictionary * param = @{
-                                 @"cartoonId": self.model.episodeModel.cartoonSet.cartoonId,
-                                 @"cartoonSetId": self.model.episodeModel.cartoonSet.id,
-                                 @"up":@"0"
-                                 };
-        NSLog(@"getImageData%@",param);
-        [AfnManager postListDataUrl:URL_CARTOON_PIC param:param result:^(NSDictionary *responseObject) {
-            if (responseObject) {
-                
-                ReadingCartoonModel * model = [ReadingCartoonModel mj_objectWithKeyValues:responseObject];
-                self.model.episodeModel.watchState = 1;
-                self.model.photos = model.photos;
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(LockCartoonCellUnlockSucess)]) {
-                    
-                    [self.delegate LockCartoonCellUnlockSucess];
-                }
-            }
-        }];
+        self.model.episodeModel.watchState = 1;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(LockCartoonCellUnlockSucess)]) {
+
+            [self.delegate LockCartoonCellUnlockSucess];
+        }
+//        NSDictionary * param = @{
+//                                 @"cartoonId": self.model.episodeModel.cartoonSet.cartoonId,
+//                                 @"cartoonSetId": self.model.episodeModel.cartoonSet.id,
+//                                 @"up":@"0"
+//                                 };
+//        NSLog(@"getImageData%@",param);
+//        [AfnManager postListDataUrl:URL_CARTOON_PIC param:param result:^(NSDictionary *responseObject) {
+//            if (responseObject) {
+//                
+//                ReadingCartoonModel * model = [ReadingCartoonModel mj_objectWithKeyValues:responseObject];
+//                self.model.episodeModel.watchState = 1;
+//                self.model.photos = model.photos;
+//                
+//                if (self.delegate && [self.delegate respondsToSelector:@selector(LockCartoonCellUnlockSucess)]) {
+//                    
+//                    [self.delegate LockCartoonCellUnlockSucess];
+//                }
+//            }
+//        }];
     }];
 }
 - (IBAction)addKakaBtnClick:(id)sender {

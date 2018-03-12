@@ -18,7 +18,7 @@
     
     // 设置超时时间
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = 1800.0;
+    manager.requestSerializer.timeoutInterval = 8.0;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     return manager;

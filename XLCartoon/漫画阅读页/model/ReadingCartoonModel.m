@@ -24,18 +24,26 @@
 
     return @{@"photos" : @"PhotoModel"};
 }
+
 -(CGFloat)heightTotal{
-    if (_heightTotal < 1) {
-        _heightTotal = SCREEN_HEIGHT;
+    if (_heightTotal<0.1) {
+        if (self.photos) {
+            for (PhotoModel * model in self.photos) {
+            
+                _heightTotal += SCREEN_WIDTH * model.h/ model.w;
+//                NSLog(@"%lf",model.h);
+            }
+        }else{
+            _heightTotal = SCREEN_HEIGHT;
+        }
     }
     return _heightTotal;
 }
 
 -(void)setPhotos:(NSArray<PhotoModel *> *)photos{
     _photos = photos;
-    for (PhotoModel * model in self.photos) {
-        _heightTotal += SCREEN_WIDTH * model.h/ model.w;
-    }
+    
+    
     [[SDImageCache sharedImageCache] clearMemory];
     
     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];

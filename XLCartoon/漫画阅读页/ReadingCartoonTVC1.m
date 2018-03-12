@@ -24,10 +24,10 @@
 #import "SliderView.h"
 
 
-typedef NS_ENUM(NSInteger, GetDataByType) {
-    GetDataByNone =0,
-    GetDataByDown = 1, //往下看
-    GetDataByUp =2
+typedef NS_ENUM(NSInteger, DirectionGetData) {
+    directionByNone =0,
+    directionByDown = 1, //往下看
+    directionByUp =2
 };
 
 @interface ReadingCartoonTVC1 () <UIScrollViewDelegate,UITabBarDelegate,LockCartoonCellDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
@@ -47,12 +47,13 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 @property (nonatomic,strong) NSIndexPath * currentInexPath;
 @property (nonatomic,strong) UILabel * titleLabel;
 
-@property (nonatomic,assign) CGPoint  offset;
 @property (nonatomic,strong) NSString * cartoonSetId;
 
-//@property (nonatomic,assign) CGPoint stopPoint;
 @property (nonatomic,strong) CALayer * brightnessLayer;
 @property (nonatomic,assign) CGFloat   lightValue;
+@property (nonatomic,assign) NSInteger minIndex;
+@property (nonatomic,assign) NSInteger maxIndex;
+@property (nonatomic,strong) NSMutableDictionary * cacheDict;//缓存一集的model ，
 @end
 
 @implementation ReadingCartoonTVC1
@@ -62,6 +63,7 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
         _readedCartoonIds = [NSMutableArray array];
         self.modelArrs = [NSMutableArray array];
         self.commentModelArrs = [NSMutableArray array];
+        self.cacheDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -70,7 +72,7 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.tableView];
+    
     [self.view.layer addSublayer:self.brightnessLayer];
     
     [self.view addSubview:self.titleLabel];
@@ -82,23 +84,8 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
     [self.view addSubview:self.barrageManager.renderView];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStyleDone target:self action:@selector(shareBtnClick)];
-    
-    self.tableView.scrollsToTop = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    
-    [self createReadingModelsWithEpisodeModels];
-    [self getImageDataWithIndex:self.episodeIndex];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.episodeIndex>0) {
-            [self getImageDataWithIndex:self.episodeIndex-1];
-        }
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self getImageDataWithIndex:self.episodeIndex+1];
-    });
-    [self changeNaviState];
-    
-    
+
+    [self resetData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -118,63 +105,107 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 }
 
 #pragma mark- getdata
--(void)createReadingModelsWithEpisodeModels{
-    CGFloat y = 0;
-    int i = 0;
-    for (EpisodeModel * episode in self.episodes) {
-        ReadingCartoonModel * readingModel = [ReadingCartoonModel new];
-        readingModel.episodeModel = episode;
-        [self.modelArrs addObject:readingModel];
-        if (i<self.episodeIndex) {
-            y+=SCREEN_HEIGHT;
-        }
-        i++;
+-(void)resetData{
+    [_tableView removeFromSuperview];
+    _tableView = nil;
+    
+    [self.view insertSubview:self.tableView atIndex:0];
+    
+    for (ReadingCartoonModel * model in self.modelArrs) {
+        NSString * jsonStr = [model mj_JSONString];
+        [self.cacheDict setObject:jsonStr forKey:model.episodeModel.cartoonSet.id];
     }
-    self.offset = CGPointMake(0, y);
- 
-    self.tableView.contentOffset = self.offset;
+
+    [self.modelArrs removeAllObjects];
+    
+    _maxIndex = _minIndex = _episodeIndex;
+    _currentInexPath = nil;
+    _willDisplayInexPath = nil;
+    
+    [self getImageDataWithDirection:directionByNone];
     
 }
 
--(void)getImageDataWithIndex:(NSInteger )index{
+-(void)getImageDataWithDirection:(DirectionGetData )direct{
+   
+    self.isGetData = YES;
     
-    self.isGetData =YES;
-
-    if ( self.modelArrs[index].photos ) {
+    EpisodeModel * episodeModel = [self.episodes objectAtIndex: direct== directionByUp ?  _minIndex-1 : direct == directionByDown ? _maxIndex+1 :self.episodeIndex];
+    NSString * jsonStr  = [self.cacheDict objectForKey:episodeModel.cartoonSet.id];
+    if (jsonStr) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ReadingCartoonModel * model = [ReadingCartoonModel mj_objectWithKeyValues:jsonStr];
+            [self addModel:model direct:direct];
+        });
         return;
-    }else{
-        if (USER_MODEL.hobby == NO && self.modelArrs[index].episodeModel.watchState == 0) {
-            return;
-        }
     }
-    
+
     NSDictionary * param = @{
-                             @"cartoonId": self.episodes[index].cartoonSet.cartoonId,
-                             @"cartoonSetId": self.episodes[index].cartoonSet.id,
+                             @"cartoonId": episodeModel.cartoonSet.cartoonId,
+                             @"cartoonSetId": episodeModel.cartoonSet.id,
                              @"up":@"0"
                              };
     NSLog(@"getImageData%@",param);
     [AfnManager postListDataUrl:URL_CARTOON_PIC param:param result:^(NSDictionary *responseObject) {
         if (responseObject) {
             
-            self.modelArrs[index] = [ReadingCartoonModel mj_objectWithKeyValues:responseObject];
-            self.modelArrs[index].episodeModel = self.episodes[index];
-            if (USER_MODEL.hobby){
-                self.modelArrs[index].episodeModel.watchState = 1;
+           
+            if (REQ_ERROR(responseObject)!=300 && _minIndex != self.episodeIndex ) {
+                if (USER_MODEL.hobby) {
+                    episodeModel.watchState = 1;
+                }
             }
-            if (index <self.episodeIndex ) {
-                CGFloat y = self.tableView.contentOffset.y;
-                y+=self.modelArrs[index].heightTotal-SCREEN_HEIGHT;//
-                self.tableView.contentOffset = CGPointMake(0, y);
-            }
-            self.offset = self.tableView.contentOffset;
-            [self.tableView reloadData];
-            self.isGetData=NO;
+            ReadingCartoonModel * model = [ReadingCartoonModel mj_objectWithKeyValues:responseObject];
+            model.episodeModel = episodeModel;
+            [self addModel:model direct:direct];
+
         }
     }];
-        
-
 }
+-(void)addModel:(ReadingCartoonModel *)model direct:(DirectionGetData)direct{
+
+    switch (direct) {
+        case directionByNone:
+            [self.modelArrs addObject:model];
+            [self.tableView reloadData];
+            break;
+        case directionByUp:
+            _minIndex--;
+            [self.modelArrs insertObject:model atIndex:0];
+            CGFloat y = self.tableView.contentOffset.y;
+            y+=model.heightTotal;//
+            self.tableView.contentOffset = CGPointMake(0, y);
+            
+            
+            [self.tableView reloadData];
+            break;
+        case directionByDown:
+            [UMConfigure setLogEnabled:YES];
+            [self.modelArrs addObject:model];
+            
+//            [self.tableView beginUpdates];
+            [self numberOfSectionsInTableView:self.tableView];
+            
+            [self.tableView insertSections: [NSIndexSet indexSetWithIndexesInRange:NSMakeRange((self.modelArrs.count-1)*2, 2)]  withRowAnimation:UITableViewRowAnimationNone];
+//            [self.tableView endUpdates];
+
+             _maxIndex ++;
+            break;
+        default:
+            break;
+    }
+    self.isGetData = NO;
+//    if (_minIndex == self.episodeIndex && self.minIndex>0) {
+//        [self getImageDataWithDirection:directionByUp];
+//        
+//    }else{
+//        
+//    }
+//
+    
+}
+
+
 
 #pragma mark- chageState
 
@@ -193,9 +224,9 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
         self.barrageManager.barrageSwitchBtn.frame = CGRectMake(x, CGRectGetMinY(_tabBar.frame)-24.5, 80, 25);
         
     } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-//            self.titleLabel.alpha = self.navigationController.isNavigationBarHidden? 1:0;
-//        }];
+        //        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+        //            self.titleLabel.alpha = self.navigationController.isNavigationBarHidden? 1:0;
+        //        }];
     }];
 }
 
@@ -209,7 +240,7 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section%2 == 0) {
-        if (self.modelArrs[section/2].photos) {
+        if (self.modelArrs[section/2].episodeModel.watchState) {
             return self.modelArrs[section/2].photos.count;
         }else{
             return 1;
@@ -223,21 +254,19 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
     }
 }
 
--(void)tableView:(UITableView *)tableView didEndDisplayingCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section%2 == 0) {
-        
-        if (self.modelArrs[indexPath.section/2].photos == nil) {
+ 
+        if ( self.modelArrs[indexPath.section/2].episodeModel.watchState == 0) {
             LockCartoonCell * cell = [LockCartoonCell cellWithTableView:tableView indexPath:indexPath];
             cell.model = self.modelArrs[indexPath.section/2];
             cell.delegate =self;
             return cell;
         }else{
             ReadingCell * cell = [ReadingCell cellWithTableView:tableView];
-//            [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+            [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
             cell.model = self.modelArrs[indexPath.section/2].photos[indexPath.row];
             cell.testLabel.text = [NSString stringWithFormat:@"%d",(int)indexPath.row+1];
             return cell;
@@ -252,10 +281,10 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     if (indexPath.section%2 == 0) {
         
-        if (self.modelArrs[indexPath.section/2].photos == nil) {
+        if (self.modelArrs[indexPath.section/2].episodeModel.watchState == 0) {
             return SCREEN_HEIGHT;
         }
         PhotoModel * model = self.modelArrs[indexPath.section/2].photos[indexPath.row];
@@ -267,9 +296,18 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     if (indexPath.section%2 == 0 ) {
         self.willDisplayInexPath = indexPath;
+        ReadingCartoonModel * model = self.modelArrs[_willDisplayInexPath.section/2];
+        int photoCount = model.photos ? (int)model.photos.count : 1;
+        NSString * str = [NSString stringWithFormat:@"%@ %d/%d",model.episodeModel.cartoonSet.titile,(int) self.willDisplayInexPath.row+1 ,photoCount];
+        CGFloat w = [str sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]}].width +20;
+        _titleLabel.frame = CGRectMake(SCREEN_WIDTH-w, SCREEN_HEIGHT-25, w, 25);
+        _titleLabel.text = str;
+        self.title = model.episodeModel.cartoonSet.titile;
+        
+
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -288,41 +326,108 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-#pragma mark- 点击事件
+#pragma mark- cellDelegate
+-(void)LockCartoonCellUnlockSucess{
+    self.isGetData = NO;
+    [self.tableView reloadData];
+}
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        adjustsScrollViewInsets_NO(self.tableView, self);
+        [_tableView registerNib:[UINib nibWithNibName:@"LockCartoonCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LockCartoonCell"];
+        //        [_tableView registerNib:[UINib nibWithNibName:@"ReadingCommentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ReadingCommentCell"];
 
--(void)moreCommentBtnClick{
-    CommentPageController * vc = [[CommentPageController alloc]init];
-    vc.cartoonSetId = self.episodes[self.currentInexPath.section/2].cartoonSet.id;
-    vc.cartoonId = self.cartoonModel.cartoon.id;
-    [self.navigationController pushViewController:vc animated:YES];
-}
--(void)shareBtnClick{
-    [shareWindow shareWithModel:self.cartoonModel.cartoon cartoonSetId:self.episodes[self.currentInexPath.section/2].cartoonSet.id];
-}
-#pragma mark- GET & SET
--(UILabel *)titleLabel{
-    if(!_titleLabel){
-        _titleLabel= [UILabel new];
-        _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont systemFontOfSize:13];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.backgroundColor = rgba(0, 0, 0, 0.5);
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _tableView.scrollsToTop = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
     }
-    return _titleLabel;
+    return _tableView;
 }
 
--(BarrageManager *)barrageManager{
-    if (!_barrageManager) {
-        _barrageManager = [[BarrageManager alloc] init];
+-(void)setWillDisplayInexPath:(NSIndexPath *)willDisplayInexPath{
+    
+//    NSLog(@"setWillDisplayInexPath %ld",willDisplayInexPath.section);
+
+    if (willDisplayInexPath.section != _willDisplayInexPath.section) {
+        
     }
-    return _barrageManager;
+    if ( self.isGetData == NO && self.modelArrs.count) {//self.episodeIndex != self.minIndex &&
+        if (willDisplayInexPath.section/2 == self.modelArrs.count-1 && self.maxIndex+1<self.episodes.count) {
+            [self getImageDataWithDirection:directionByDown];
+        }
+//        if (willDisplayInexPath.section == 0 && self.minIndex>0) {
+//            [self getImageDataWithDirection:directionByUp];
+//        }
+    }
+    
+    _willDisplayInexPath = willDisplayInexPath;
+
+}
+-(void)setCurrentInexPath:(NSIndexPath *)currentInexPath{
+    
+    _currentInexPath = currentInexPath;
+    if ( self.modelArrs[_currentInexPath.section/2].photos) {
+        PhotoModel * model = self.modelArrs[_currentInexPath.section/2].photos[_currentInexPath.row];
+        [self.barrageManager getBarrageTextWithPhotoId:model.id cartoonId:self.modelArrs[_currentInexPath.section/2].episodeModel.cartoonSet];
+    }
+}
+-(NSString *)cartoonSetId{
+    return self.episodes[_willDisplayInexPath.section/2].cartoonSet.id;
+}
+
+#pragma mark- scrollDelegate
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    
+    if (_willDisplayInexPath != _currentInexPath) self.currentInexPath = self.willDisplayInexPath;
+    
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+
+//    static const CGFloat max = 5000;
+//    CGFloat y = scrollView.contentOffset.y;
+//    //    NSLog(@"zzzzzzz%lf,%lf",targetContentOffset->y -y,velocity.y);
+//    if (targetContentOffset->y> y+max) {
+//        targetContentOffset->y = y +max;
+//    }
+//    if (targetContentOffset->y < y-max ) {
+//        targetContentOffset->y = y -max;
+//    }
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    //    NSLog(@"_willDisplayInexPath%ld,%ld",_willDisplayInexPath.section,_willDisplayInexPath.row);
+    if (![self.navigationController isNavigationBarHidden]) {
+        [self changeNaviState];
+    }
+//
+//    CGFloat maxOffset = scrollView.contentSize.height - SCREEN_HEIGHT;// self.modelArrs.lastObject.heightTotal;
+//
+//    if (scrollView.contentOffset.y> maxOffset  &&  self.isGetData==NO  &&  self.maxIndex+1<self.episodes.count && maxOffset>0) {
+//        //下一话
+//        NSLog(@"scrollView: 下一话");
+//        NSLog(@"%lf,%lf,%lf",scrollView.contentSize.height,maxOffset,scrollView.contentOffset.y);
+//        self.isGetData = YES;
+//        [self getImageDataWithDirection:directionByDown];
+//    }
+    if (_tableView.contentOffset.y <0 && self.isGetData==NO && self.minIndex>0 ) {
+        //上一话
+        self.isGetData = YES;
+        NSLog(@"scrollView: 上一话");
+        [self getImageDataWithDirection:directionByUp];
+    }
 }
 -(UIView *)sectionFooterView{
+    
     if (!_sectionFooterView) {
         _sectionFooterView = [UIView new];
         _sectionFooterView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40+TabbarHeight);
-        
+
         [_sectionFooterView addSubview:self.moreCommetFootBtn];
 
     }
@@ -330,6 +435,7 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
 }
 -(UIButton *)moreCommetFootBtn{
     if (_moreCommetFootBtn == nil) {
+
         _moreCommetFootBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
         _moreCommetFootBtn.tag = 100;
         _moreCommetFootBtn.backgroundColor = [UIColor whiteColor];
@@ -362,21 +468,33 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
     }
     return _sectionHeaderView;
 }
--(UITableView *)tableView{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = COLOR_SYSTEM_GARY;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        adjustsScrollViewInsets_NO(self.tableView, self);
-        [_tableView registerNib:[UINib nibWithNibName:@"LockCartoonCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LockCartoonCell"];
-//        [_tableView registerNib:[UINib nibWithNibName:@"ReadingCommentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ReadingCommentCell"];
-//        _tableView.decelerationRate = (UIScrollViewDecelerationRateFast + UIScrollViewDecelerationRateNormal)/2;
 
-//        NSLog(@"%lf,%lf",UIScrollViewDecelerationRateFast ,UIScrollViewDecelerationRateNormal);
+
+#pragma mark- MemoryWarnin
+-(void)dealloc{
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+#pragma mark- TABBAR 功能
+-(UILabel *)titleLabel{
+    if(!_titleLabel){
+        _titleLabel= [UILabel new];
+        _titleLabel = [UILabel new];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.backgroundColor = rgba(0, 0, 0, 0.5);
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
-    return _tableView;
+    return _titleLabel;
+}
+
+-(BarrageManager *)barrageManager{
+    if (!_barrageManager) {
+        _barrageManager = [[BarrageManager alloc] init];
+    }
+    return _barrageManager;
 }
 
 -(ReadingTabBar *)tabBar{
@@ -386,70 +504,6 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
     }
     return _tabBar;
 }
--(void)setEpisodeIndex:(NSInteger)episodeIndex{
-    if (episodeIndex == 0) {
-        _episodeIndex = episodeIndex;
-        return;
-    }
-    if (_episodeIndex < episodeIndex && episodeIndex+1 <self.episodes.count) {
-        [self getImageDataWithIndex:episodeIndex+1];
-//        self.isGetData = YES;
-    }
-    if (_episodeIndex > episodeIndex && episodeIndex >0){
-        [self getImageDataWithIndex:episodeIndex-1];
-//        self.isGetData = YES;
-    }
-    
-    
-    _episodeIndex = episodeIndex;
-}
-
--(void)setWillDisplayInexPath:(NSIndexPath *)willDisplayInexPath{
-    
-    _willDisplayInexPath = willDisplayInexPath;
-    
-    if (_willDisplayInexPath.section/2 != self.episodeIndex) {
-        CGFloat maxOffset = self.offset.y + self.modelArrs[self.episodeIndex].heightTotal;
-    
-        if (_tableView.contentOffset.y > maxOffset) {
-            self.episodeIndex = _willDisplayInexPath.section/2;
-        }
-        if (_tableView.contentOffset.y < self.offset.y ) {
-            self.episodeIndex = _willDisplayInexPath.section/2;
-        }
-        
-    }
-    
-    ReadingCartoonModel * model = self.modelArrs[_willDisplayInexPath.section/2];
-    int photoCount = model.photos ? (int)model.photos.count : 1;
-    NSString * str = [NSString stringWithFormat:@"%@ %d/%d",model.episodeModel.cartoonSet.titile,(int)willDisplayInexPath.row+1 ,photoCount];
-    CGFloat w = [str sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]}].width +20;
-    _titleLabel.frame = CGRectMake(SCREEN_WIDTH-w, SCREEN_HEIGHT-25, w, 25);
-    _titleLabel.text = str;
-    self.title = model.episodeModel.cartoonSet.titile;
-    
-}
--(void)setCurrentInexPath:(NSIndexPath *)currentInexPath{
-    
-    _currentInexPath = currentInexPath;
-    if ( self.modelArrs[_currentInexPath.section/2].photos) {
-        PhotoModel * model = self.modelArrs[_currentInexPath.section/2].photos[_currentInexPath.row];
-        [self.barrageManager getBarrageTextWithPhotoId:model.id cartoonId:self.episodes[_currentInexPath.section/2].cartoonSet];
-    }
-}
--(NSString *)cartoonSetId{
-    return self.episodes[_willDisplayInexPath.section/2].cartoonSet.id;
-}
--(CALayer *)brightnessLayer{
-    if(!_brightnessLayer){
-        _brightnessLayer = [CALayer layer];
-        _brightnessLayer.frame = [UIScreen mainScreen].bounds;
-        
-        self.brightnessLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:1-self.lightValue].CGColor;
-    }
-    return _brightnessLayer;
-}
-#pragma mark- tabbarDelegate
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     
     switch (item.tag) {
@@ -476,10 +530,11 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
             if (![self.navigationController isNavigationBarHidden]) {
                 [self changeNaviState];
             }
-            [ReadingEpisodeWindow shareWithModels:self.episodes index:self.episodeIndex cartoon:self.cartoonModel.cartoon selected:^(NSInteger row) {
-                [self changeNaviState];
+            [ReadingEpisodeWindow shareWithModels:self.episodes index:self.willDisplayInexPath.section/2 cartoon:self.cartoonModel.cartoon selected:^(NSInteger row) {
+//                [self changeNaviState];
                 if (row>=0) {
-                    
+                    self.episodeIndex = row;
+                    [self resetData];
                 }
             }];
         }
@@ -496,15 +551,27 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
             break;
     }
 }
-
-
-
-
-#pragma mark- cellDelegate
--(void)LockCartoonCellUnlockSucess{
-    [self.tableView reloadData];
-}
 #pragma mark- sliderView
+
+-(CGFloat)lightValue{
+    NSString * value = USER_SYSTEM_LIGHT;
+    if (value) {
+        return value.floatValue;
+    }else{
+        return 0.9;
+    }
+}
+-(CALayer *)brightnessLayer{
+    if(!_brightnessLayer){
+        _brightnessLayer = [CALayer layer];
+        _brightnessLayer.frame = [UIScreen mainScreen].bounds;
+        
+        self.brightnessLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:1-self.lightValue].CGColor;
+    }
+    return _brightnessLayer;
+}
+
+
 - (void)createSliderViewWithTag:(NSNumber *) tag{
     SliderView * sliderView = [[[NSBundle mainBundle] loadNibNamed:@"SliderView" owner:nil options:nil]firstObject];
     [self.view addSubview:sliderView];
@@ -538,7 +605,7 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
         return [NSString stringWithFormat:@"%@\n%0.f/%ld",self.title,value+1,self.modelArrs[self.willDisplayInexPath.section/2].photos.count];
     }else{
         return [NSString stringWithFormat:@"%0.1f%%",125*slider.value-25];
-//        return [NSString stringWithFormat:@"%0.1f\%",((1-(1-slider.value)/0.8))*100];
+        //        return [NSString stringWithFormat:@"%0.1f\%",((1-(1-slider.value)/0.8))*100];
     }
 }
 -(void)sliderValueChange:(UISlider *)slider{
@@ -557,79 +624,15 @@ typedef NS_ENUM(NSInteger, GetDataByType) {
         USER_SYSTEM_LIGHT_SET(value);
     }
 }
--(CGFloat)lightValue{
-    NSString * value = USER_SYSTEM_LIGHT;
-    if (value) {
-        return value.floatValue;
-    }else{
-        return 0.9;
-    }
+-(void)moreCommentBtnClick{
+    CommentPageController * vc = [[CommentPageController alloc]init];
+    vc.cartoonSetId = self.episodes[self.currentInexPath.section/2].cartoonSet.id;
+    vc.cartoonId = self.cartoonModel.cartoon.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
-#pragma mark- scrollDelegate
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-
-    
-    if (_willDisplayInexPath != _currentInexPath) self.currentInexPath = self.willDisplayInexPath;
-
+-(void)shareBtnClick{
+    [shareWindow shareWithModel:self.cartoonModel.cartoon cartoonSetId:self.episodes[self.currentInexPath.section/2].cartoonSet.id];
 }
-//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-//     _stopPoint = self.tableView.contentOffset;
-//}
-
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    
-    static const CGFloat max = 5000;
-    CGFloat y = scrollView.contentOffset.y;
-//    NSLog(@"zzzzzzz%lf,%lf",targetContentOffset->y -y,velocity.y);
-    if (targetContentOffset->y> y+max) {
-        targetContentOffset->y = y +max;
-    }
-    if (targetContentOffset->y < y-max ) {
-        targetContentOffset->y = y -max;
-    }
-}
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
-//    NSLog(@"_willDisplayInexPath%ld,%ld",_willDisplayInexPath.section,_willDisplayInexPath.row);
-    if (![self.navigationController isNavigationBarHidden]) {
-        [self changeNaviState];
-    }
-//    CGFloat maxOffset = self.offset.y + self.modelArrs[self.index].heightTotal;
-
-//    if (_tableView.contentOffset.y > maxOffset  &&  self.isGetData==NO && self.index<self.episodes.count-2) {
-//        //下一话
-//        self.isGetData = YES;
-//        self.index++;
-//        [self getImageDataWithIndex:self.index+1];
-//    }
-//    if (_tableView.contentOffset.y < self.offset.y && self.isGetData==NO && self.index>1) {
-//        //上一话
-//        self.isGetData = YES;
-//        self.index--;
-//        [self getImageDataWithIndex:self.index-1];
-//    }
-    
-//    if (_willDisplayInexPath.section/2 == self.index+1 && self.isGetData == NO){ //下一话
-//        [self getImageDataWithIndex:self.index+1];
-//        self.index++;
-//
-//    }
-//
-//    if (_willDisplayInexPath.section/2 == self.index-1 && self.isGetData == NO) { //上一话
-//        [self getImageDataWithIndex:self.index-1];
-//        self.index--;
-//
-//    }
-    
-   
-    
-}
-#pragma mark- MemoryWarnin
--(void)dealloc{
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 @end
+
+
