@@ -11,7 +11,6 @@
 
 @interface IAPHelperManager : NSObject
 
-//+(void)getProductWithSet:(NSSet *)set sucess:(void(^)(void))sucess;
-+(void)buy:(NSString *)productID isProduction:(BOOL)isProduction SharedSecret:(NSString *)sharedSecret sucess:(void (^)(void))sucess;
++(void)buy:(NSString *)productID Id:(NSString *)ID  isProduction:(BOOL)isProduction SharedSecret:(NSString *)sharedSecret;
 
 @end

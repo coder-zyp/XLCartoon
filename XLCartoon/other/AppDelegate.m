@@ -87,7 +87,7 @@
     
     [self configUSharePlatforms];
     [self configUPushPlatforms];
-    [UMConfigure setLogEnabled:NO];
+    [UMConfigure setLogEnabled:YES];
     [[UMSocialManager defaultManager] openLog:NO];
     [UMErrorCatch initErrorCatch];
     

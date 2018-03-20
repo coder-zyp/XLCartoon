@@ -18,16 +18,19 @@
 
 
 
-
+//#define BASE_URL    @"http://www.kakamanhua.com/Comic/"
 #define BASE_URL    @"http://192.168.1.39:8080/Comic/"
+//#define BASE_URL    @"http://distributor.kakamanhua.com/Comic/"
 /***平台分享回调***/
 #define URL_SHARE_BACK BASE_URL @"app/back/share.do"
 /***漫画分享回调***/
 #define URL_SHARE_CARTOON_BACK BASE_URL @"app/comic/back/share.do"
-#define URL_PAY_SUCCESS BASE_URL @"app/ios/qpp/payProduct.do"
 
-// 获取验证码/send/register/code
+
+// 注册验证码/send/register/code
 #define URL_SMS BASE_URL @"send/register/code.do"
+// 忘记密码验证码
+#define URL_SMS_FIND_PSD BASE_URL @"app/send/register/code/byupdatepwd.do"
 //登录
 #define URL_LOGIN BASE_URL @"app/user/login/bypwd.do"
 //第三方登录
@@ -154,7 +157,7 @@
 /***完成任务***/
 #define URL_MY_TASK_FINISH BASE_URL @"qpp/comic/get/cartoon/task/award/byuserid.do"
 /***购买解锁漫画***/
-#define URL_CARTOON_UNLOCK BASE_URL @"qpp/comic/buy/this/cartoonset.do" //userId id
+#define URL_CARTOON_UNLOCK BASE_URL @"qpp/app/comic/buy/this/cartoonset.do" //userId id
 /***我的消息***/
 #define URL_MY_MESSAGE BASE_URL @"qpp/comic/get/allNews232.do" //userId
 
@@ -162,6 +165,10 @@
 #define URL_FEEDBACK    BASE_URL @"/qpp/comic/add/my/feedback.do"
 //商品信息
 #define URL_PAY_PRODUCTS BASE_URL @"app/qpp/get/product.do"
+//获取订单
+#define URL_PAY_ORDER BASE_URL @"app/ios/qpp/generateOrder.do"
+//支付成功 验签
+#define URL_PAY_SUCCESS BASE_URL @"app/ios/qpp/payProduct.do"
 
 #endif /* Api_h */
 

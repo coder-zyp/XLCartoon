@@ -16,18 +16,12 @@
 @property (nonatomic,assign) NSInteger index;
 @property (nonatomic,strong) UIView * blackView;
 @property (nonatomic,strong) cartoon * cartoon;
+@property (nonatomic,assign) BOOL mode;
 @end
 
 @implementation ReadingEpisodeWindow
 +(ReadingEpisodeWindow *)shareWithModels:(NSArray<EpisodeModel *> *)modelArr index:(NSInteger)index cartoon:(cartoon*)cartoon  selected:(SelectedBlock)block{
     static ReadingEpisodeWindow *window = nil;
-//    static dispatch_once_t onceToken;
-//    if (window == nil) {
-////        dispatch_once(&onceToken, ^{
-//
-////        });
-//
-//    }
     window = [[ReadingEpisodeWindow alloc] initWithModels:modelArr  index:index cartoon:cartoon selected:block];
     window.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     window.backgroundColor = [UIColor clearColor];
@@ -44,6 +38,7 @@
         self.index = index;
         self.selectedBlock = block;
         self.cartoon = cartoon;
+        self.mode = NO;
         [self addSubview:self.blackView];
        
         UIButton * closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -59,7 +54,6 @@
         self.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
         self.hidden = YES;
-        
     }] ;
     
 }
@@ -83,9 +77,6 @@
         _blackView.backgroundColor = rgba(30, 30, 30, 0.95);
         [_blackView addSubview:self.tableView];
         
-        
-        
-        
         UILabel * cartoonNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, 60)];
         cartoonNameLabel.text = self.cartoon.cartoonName;
         cartoonNameLabel.textAlignment = NSTextAlignmentCenter;
@@ -108,6 +99,7 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         [btn setTitle:imageName forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(reloadTabelDataBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         
         imageName = @"倒叙";
@@ -132,7 +124,17 @@ static NSString * const reuseIdentifier = @"ReadingEpisodeCell";
     }
     return _tableView;
 }
-
+-(void)reloadTabelDataBtnClick:(UIButton *)btn{
+    if (self.modelArr) {
+        UILabel * label = [btn viewWithTag:1];
+        UIImageView * imageView = [btn viewWithTag:2];
+        self.mode = !self.mode;
+        imageView.highlighted = self.mode;
+        label.text = self.mode ? @"正序" : @"倒叙";
+        [self.tableView reloadData];
+    }
+    
+}
 #pragma mark- UITableViewDelegate, UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -141,27 +143,29 @@ static NSString * const reuseIdentifier = @"ReadingEpisodeCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     ReadingEpisodeCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     //// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    if (self.index == indexPath.row) {
+    NSInteger row = _mode ? self.modelArr.count-1 - indexPath.row : indexPath.row;
+    
+    if (self.index == row) {
         cell.icon.hidden = NO;
     }else{
         cell.icon.hidden = YES;
     }
-    cell.nameLabel.text = [NSString stringWithFormat:@"%ld - ",indexPath.row+1];
-    cell.model = self.modelArr[indexPath.row];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%02ld - ",row+1];
+    cell.model = self.modelArr[row];
 
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedBlock(indexPath.row);
+    NSInteger row = _mode ? self.modelArr.count-1 - indexPath.row : indexPath.row;
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
         self.hidden = YES;
-        
+        self.selectedBlock(row);
     }] ;
 
 }
@@ -169,27 +173,4 @@ static NSString * const reuseIdentifier = @"ReadingEpisodeCell";
     return 50;
 }
 
-
--(void)getData{
-    
-    //    NSDictionary * param =@{@"Id":self.model.cartoon.id,
-    //                            @"nowPage":[NSString stringWithFormat:@"%ld",self.pageIndex+1],
-    //                            @"mode":[NSString stringWithFormat:@"%d",self.mode]  //0正叙，1 倒叙
-    //                            };
-    //
-    //    [AfnManager postListDataUrl:URL_EPISODE_CARTOON param:param result:^(NSDictionary *responseObject) {
-    //        if (responseObject) {
-    //            for (NSDictionary * dict in OBJ(responseObject)) {
-    //                [_modelArr addObject:[EpisodeModel mj_objectWithKeyValues:dict]];
-    //            }
-    //            [self.tableView reloadData];
-    //            self.pageIndex = PAGE_INDEX(responseObject);
-    //            self.pageToale = PAGE_TOTAL(responseObject);
-    //        }
-    //        [self.tableView.mj_header endRefreshing];
-    //        [self.tableView.mj_footer endRefreshing];
-    //        self.tableView.mj_footer.hidden =NO;
-    //        self.loading = NO;
-    //    }];
-}
 @end

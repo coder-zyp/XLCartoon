@@ -25,18 +25,42 @@
                     <rect key="frame" x="0.0" y="667" width="375" height="50"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.20000000000000001" maxValue="1" minimumValueImage="reading-亮度-small" maximumValueImage="reading-亮度" translatesAutoresizingMaskIntoConstraints="NO" id="CHV-av-Ovh" customClass="ASValueTrackingSlider">
-                            <rect key="frame" x="18" y="9.5" width="339" height="31"/>
+                            <rect key="frame" x="28" y="9.5" width="319" height="31"/>
                             <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </slider>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AT-cV-Ze8">
+                            <rect key="frame" x="325" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="08o-tj-T50"/>
+                                <constraint firstAttribute="width" constant="50" id="End-kl-elt"/>
+                            </constraints>
+                            <connections>
+                                <action selector="upDownBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="DSf-yi-edR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffs-gl-BSy">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="517-zK-00l"/>
+                                <constraint firstAttribute="height" constant="50" id="V72-JC-MCj"/>
+                            </constraints>
+                            <connections>
+                                <action selector="upDownBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="uAu-BZ-6nd"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="CHV-av-Ovh" firstAttribute="leading" secondItem="4Zx-hp-0tj" secondAttribute="leading" constant="20" id="P2b-pH-WbD"/>
+                        <constraint firstAttribute="trailing" secondItem="7AT-cV-Ze8" secondAttribute="trailing" id="NJM-mh-gUw"/>
+                        <constraint firstItem="CHV-av-Ovh" firstAttribute="leading" secondItem="4Zx-hp-0tj" secondAttribute="leading" constant="30" id="P2b-pH-WbD"/>
+                        <constraint firstItem="7AT-cV-Ze8" firstAttribute="top" secondItem="4Zx-hp-0tj" secondAttribute="top" id="Sl9-tF-GFF"/>
                         <constraint firstAttribute="height" constant="50" id="cY0-3D-UO8"/>
-                        <constraint firstAttribute="trailing" secondItem="CHV-av-Ovh" secondAttribute="trailing" constant="20" id="jr6-gW-kkg"/>
+                        <constraint firstItem="Ffs-gl-BSy" firstAttribute="leading" secondItem="4Zx-hp-0tj" secondAttribute="leading" id="haM-yb-UHA"/>
+                        <constraint firstAttribute="trailing" secondItem="CHV-av-Ovh" secondAttribute="trailing" constant="30" id="jr6-gW-kkg"/>
                         <constraint firstItem="CHV-av-Ovh" firstAttribute="centerY" secondItem="4Zx-hp-0tj" secondAttribute="centerY" id="lhC-Ro-F6E"/>
+                        <constraint firstItem="Ffs-gl-BSy" firstAttribute="top" secondItem="4Zx-hp-0tj" secondAttribute="top" id="v7i-Zn-8EP"/>
                     </constraints>
                 </view>
             </subviews>

@@ -39,8 +39,8 @@
         _testLabel = [UILabel new];
         [self.contentView addSubview:_testLabel];
         _testLabel.textAlignment = NSTextAlignmentCenter;
-        _testLabel.font  = [UIFont fontWithName:@"JJianzi" size:70];;
-        _testLabel.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+        _testLabel.font  = [UIFont fontWithName:@"JJianzi" size:70];        _testLabel.sd_layout.topEqualToView(self.contentView).bottomEqualToView(self.contentView)
+        .leftEqualToView(self.contentView).rightEqualToView(self.contentView);
         
         _picImageView = [[UIImageView alloc]init];//WithImage:Z_PlaceholderImg];
         [self.contentView addSubview:_picImageView];
@@ -57,11 +57,11 @@
 -(void)setModel:(PhotoModel *)model{
     _model = model;
     _picImageView.sd_layout.autoHeightRatio(model.h/model.w);
-//    if (model.image) {
-//        _picImageView.image = model.image;
-//    }else{
+    if (model.image) {
+        _picImageView.image = model.image;
+    }else{
         [_picImageView sd_setImageWithURL:[NSURL URLWithString:model.src]];
-//    }
+    }
     
 }
 

@@ -77,14 +77,14 @@
     }
     return self;
 }
--(void)setModel:(EpisodeModel *)model{
+-(void)setModel:(EpisodeModel *)model withIsWatch:(BOOL ) isWatch{
     _model = model;
     [_EpisodeImageView sd_setImageWithURL:[NSURL URLWithString:model.cartoonSet.showPhoto] placeholderImage:Z_PlaceholderImg];
     self.EpisodeNameLabel.text = [NSString stringWithFormat:@"%@  %@", model.cartoonSet.titile,model.cartoonSet.details];
     self.timeLabel.text = model.cartoonSet.updateDate;
 //    self.praiseCountLabel.text = [NSString stringWithFormat:@"%ld", model.cartoonSet.okCount];
     
-    if (model.watchState == 2){
+    if (isWatch){
         self.EpisodeNameLabel.textColor = COLOR_NAVI;
         self.timeLabel.textColor = COLOR_NAVI;
         self.praiseCountLabel.textColor = COLOR_NAVI;
@@ -108,20 +108,8 @@
         self.moneyLabel.attributedText = [NSAttributedString new];
     }
     NSString * str =[NSString stringWithFormat:@"点赞:%@",_model.cartoonSet.okCount];//,_model.cartoonSet.commentCount];
-//    NSMutableAttributedString * text = [[NSMutableAttributedString alloc]initWithString:str];
-//    text.yy_lineSpacing = 3;
-//    CGFloat  width = [str boundingRectWithSize:CGSizeMake(MAXFLOAT, 45) options:0 attributes:@{NSFontAttributeName:_praiseCountLabel.font} context:nil].size.width;
     _praiseCountLabel.text = str;
-    
-//    NSMutableAttributedString * aStr = [[NSMutableAttributedString alloc]initWithAttributedString: self.moneyLabel.attributedText];
-//    if (model.watchState == 0) {
-//        [aStr addAttribute:NSForegroundColorAttributeName value:COLOR_NAVI range:NSMakeRange(0, aStr.length)];
-//    }else{
-//        [aStr addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, aStr.length)];
-//        [aStr addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, aStr.length)];
-//        [aStr addAttribute:NSStrikethroughColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, aStr.length)];
-//    }
-//    self.moneyLabel.attributedText = aStr;
+
 }
 -(UIImageView *)EpisodeImageView{
     if (!_EpisodeImageView) {

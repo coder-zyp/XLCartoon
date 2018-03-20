@@ -30,7 +30,7 @@
 @property (nonatomic,strong) NSString * src;//"http://p0oqd5s9w.b4342776123@qinruida-dz0FIDM6.jpg",
 @property (nonatomic,assign) CGFloat    w;//null,
 @property (nonatomic,assign) CGFloat    h;//null"http://p0oqd5s342776123@qinruida-
-//@property (nonatomic,strong) UIImage  * image;
+@property (nonatomic,strong) UIImage  * image;
 
 @end
 @class EpisodeModel;
@@ -39,8 +39,8 @@
 
 @property (nonatomic,assign) CGFloat heightTotal;
 @property (nonatomic,strong) NSArray <PhotoModel *> * photos;
-@property (nonatomic,strong) ReadingCartoonSpare * spare;
-@property (nonatomic,strong) NSArray < commentModel *> * commentModel;
+//@property (nonatomic,strong) ReadingCartoonSpare * spare;
+//@property (nonatomic,strong) NSArray < commentModel *> * commentModel;
 @property (nonatomic,strong) EpisodeModel * episodeModel;
 
 

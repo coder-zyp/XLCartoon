@@ -87,11 +87,6 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
 
     [self resetData];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (self.navigationController.isNavigationBarHidden) {
@@ -130,7 +125,22 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
    
     self.isGetData = YES;
     
-    EpisodeModel * episodeModel = [self.episodes objectAtIndex: direct== directionByUp ?  _minIndex-1 : direct == directionByDown ? _maxIndex+1 :self.episodeIndex];
+    NSInteger index = self.episodeIndex;
+    
+    if (direct== directionByUp) {
+        if (self.modelArrs.firstObject.episodeModel.watchState == 0) {
+            return;
+        }
+        index = _minIndex -1;
+    }else if(direct == directionByDown){
+        if (self.modelArrs.lastObject.episodeModel.watchState == 0) {
+            return;
+        }
+        index = _maxIndex+1;
+    }else{
+        
+    }
+    EpisodeModel * episodeModel = [self.episodes objectAtIndex: index];
     NSString * jsonStr  = [self.cacheDict objectForKey:episodeModel.cartoonSet.id];
     if (jsonStr) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -148,8 +158,7 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
     NSLog(@"getImageData%@",param);
     [AfnManager postListDataUrl:URL_CARTOON_PIC param:param result:^(NSDictionary *responseObject) {
         if (responseObject) {
-            
-           
+
             if (REQ_ERROR(responseObject)!=300 && _minIndex != self.episodeIndex ) {
                 if (USER_MODEL.hobby) {
                     episodeModel.watchState = 1;
@@ -172,7 +181,11 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
         case directionByUp:
             _minIndex--;
             [self.modelArrs insertObject:model atIndex:0];
+            
             CGFloat y = self.tableView.contentOffset.y;
+            if (y>-0.1) {
+                y-= SCREEN_WIDTH/6;
+            }
             y+=model.heightTotal;//
             self.tableView.contentOffset = CGPointMake(0, y);
             
@@ -182,8 +195,6 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
         case directionByDown:
             [UMConfigure setLogEnabled:YES];
             [self.modelArrs addObject:model];
-            
-//            [self.tableView beginUpdates];
             [self numberOfSectionsInTableView:self.tableView];
             
             [self.tableView insertSections: [NSIndexSet indexSetWithIndexesInRange:NSMakeRange((self.modelArrs.count-1)*2, 2)]  withRowAnimation:UITableViewRowAnimationNone];
@@ -195,14 +206,6 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
             break;
     }
     self.isGetData = NO;
-//    if (_minIndex == self.episodeIndex && self.minIndex>0) {
-//        [self getImageDataWithDirection:directionByUp];
-//        
-//    }else{
-//        
-//    }
-//
-    
 }
 
 
@@ -359,9 +362,6 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
         if (willDisplayInexPath.section/2 == self.modelArrs.count-1 && self.maxIndex+1<self.episodes.count) {
             [self getImageDataWithDirection:directionByDown];
         }
-//        if (willDisplayInexPath.section == 0 && self.minIndex>0) {
-//            [self getImageDataWithDirection:directionByUp];
-//        }
     }
     
     _willDisplayInexPath = willDisplayInexPath;
@@ -405,16 +405,7 @@ typedef NS_ENUM(NSInteger, DirectionGetData) {
     if (![self.navigationController isNavigationBarHidden]) {
         [self changeNaviState];
     }
-//
-//    CGFloat maxOffset = scrollView.contentSize.height - SCREEN_HEIGHT;// self.modelArrs.lastObject.heightTotal;
-//
-//    if (scrollView.contentOffset.y> maxOffset  &&  self.isGetData==NO  &&  self.maxIndex+1<self.episodes.count && maxOffset>0) {
-//        //下一话
-//        NSLog(@"scrollView: 下一话");
-//        NSLog(@"%lf,%lf,%lf",scrollView.contentSize.height,maxOffset,scrollView.contentOffset.y);
-//        self.isGetData = YES;
-//        [self getImageDataWithDirection:directionByDown];
-//    }
+
     if (_tableView.contentOffset.y <0 && self.isGetData==NO && self.minIndex>0 ) {
         //上一话
         self.isGetData = YES;

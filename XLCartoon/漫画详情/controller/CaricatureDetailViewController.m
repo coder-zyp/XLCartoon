@@ -8,6 +8,7 @@
 
 #import "CaricatureDetailViewController.h"
 #import "ReadingCartoonTVC1.h"
+#import "ReadingCartoonTVC.h"
 #import "EpisodeTableViewController.h"
 #import "CommentTabelViewController.h"
 #import "MJRefresh.h"
@@ -51,6 +52,8 @@ NSString *const ZJParentTableViewDidLeaveFromTopNotification = @"ZJParentTableVi
 @property (nonatomic,strong) EpisodeModel * episodeModel;//
 @property (nonatomic,strong) CartoonDetailModel * model;
 
+@property (nonatomic,strong) NSArray <UIViewController *> * containerViewController;
+
 @end
 
 static NSString * const cellID = @"cellID";
@@ -70,6 +73,7 @@ static NSString * const cellID = @"cellID";
         self.titleSizeNormal = 18.3;
         self.titleSizeSelected = 18.3;
         _rightItmes = [NSMutableArray array];
+        
     }
     return self;
 }
@@ -77,7 +81,6 @@ static NSString * const cellID = @"cellID";
     [super viewDidLoad];
     [self wr_setNavBarBackgroundAlpha:0];
     [self getCartoonData];
-    
     [self setupRightItmes];
     [self.view addSubview:self.bottomView];
     [self setSelectIndex:1];
@@ -86,10 +89,9 @@ static NSString * const cellID = @"cellID";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    
     [self getBottomData];
-    
+    EpisodeTableViewController * tvc = (EpisodeTableViewController *)_containerViewController.lastObject;
+    [tvc.tableView reloadData];
 }
 
 -(void)setupRightItmes{
@@ -138,6 +140,30 @@ static NSString * const cellID = @"cellID";
         }
     }];
 }
+-(NSArray<UIViewController *> *)containerViewController{
+    if (_containerViewController == nil) {
+        CommentTabelViewController *vc = [[CommentTabelViewController alloc] init];
+        vc.delegate = self;
+        vc.model = self.model;
+        
+    
+        EpisodeTableViewController *vc2 = [[EpisodeTableViewController alloc] init];
+        vc2.model = self.model;
+        vc2.delegate = self;
+        
+        _containerViewController = @[vc,vc2];
+        
+
+    }
+    if (self.episodeModel) {
+        EpisodeTableViewController * tvc = (EpisodeTableViewController *)_containerViewController.lastObject;
+        tvc.continueReadingId = _episodeModel.cartoonSet.id;
+        [tvc.tableView reloadData];
+    }
+    
+    return _containerViewController;
+}
+
 -(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
     if (self.model) {
         
@@ -152,22 +178,12 @@ static NSString * const cellID = @"cellID";
     return self.titles[index];
 }
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    switch (index) {
-        case 0:{
-            CommentTabelViewController *vc = [[CommentTabelViewController alloc] init];
-            vc.delegate = self;
-            vc.model = self.model;
-            return vc;
-        }
-        case 1:{
-            EpisodeTableViewController *vc = [[EpisodeTableViewController alloc] init];
-            vc.model = self.model;
-            vc.delegate = self;
-            return vc;
-        }
-        
+    if (self.model) {
+        return  [self.containerViewController objectAtIndex:index];
+    }else{
+        return [UIViewController new];
     }
-    return [[UIViewController alloc] init];
+    
 }
 
 -(CGFloat)menuView:(WMMenuView *)menu widthForItemAtIndex:(NSInteger)index{
@@ -402,6 +418,12 @@ static NSString * const cellID = @"cellID";
             [btn setTitle:@"开始阅读" forState:UIControlStateNormal];
         }
         if (self.model==nil) [SVProgressHUD show];
+        EpisodeTableViewController * tvc = (EpisodeTableViewController *)_containerViewController.lastObject;
+        if (tvc) {
+            tvc.continueReadingId = _episodeModel.cartoonSet.id;
+            [tvc.tableView reloadData];
+        }
+        
     }];
 }
 -(UIView *)bottomView{
@@ -442,19 +464,33 @@ static NSString * const cellID = @"cellID";
     }else{
         [shareWindow shareWithModel:self.model.cartoon cartoonSetId:nil];
     }
-    
 }
 
 -(void)BottomClick{
-
-    ReadingCartoonTVC1 * vc = [[ReadingCartoonTVC1 alloc]init];
-
-    vc.popBlcok = ^(NSArray *cartoonIds) {
+    UIButton * btn = [self.bottomView viewWithTag:1];
+    btn.enabled = NO;
+    EpisodeTableViewController * tvc = (EpisodeTableViewController *)_containerViewController.lastObject;
+    if (tvc && tvc.modelArr.count) {
+        [SVProgressHUD dismiss];
+        btn.enabled = YES;
+        NSInteger i = 0;
+        for (EpisodeModel * model in tvc.modelArr) {
+            if ([model.cartoonSet.id isEqualToString: self.episodeModel.cartoonSet.id]) {
+                ReadingCartoonTVC * vc = [[ReadingCartoonTVC alloc]init];
+                vc.cartoonModel = self.model;
+                vc.episodes = tvc.modelArr;
+                vc.episodeIndex = i;
+                [self.navigationController pushViewController:vc animated:YES];
+                break;
+            }
+            i++;
+        }
         
-    };
-    vc.cartoonModel = self.model;
-    [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [self performSelector:@selector(BottomClick) withObject:nil afterDelay:0.3];
+    }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

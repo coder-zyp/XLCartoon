@@ -76,11 +76,11 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
         self.pageIndex = 0;
         [self getData];
     }];
-
+    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier: reuseIdentifierSectionOne];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FindFooterView"];
-
+    
     UINib * nib = [UINib nibWithNibName:reuseIdentifier bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
     
@@ -108,9 +108,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
         [self getDataWithUrl:url withSection:i];
         i++;
     }
-    [self getDataWithUrl:URL_HOT_CARTOON withSection:1];
-    [self getDataWithUrl:URL_CARTOON_TOP withSection:3];
-    [self getDataWithUrl:URL_CARTOON_TOP_BY_FOLLOW withSection:2];
+
 }
 -(void)getDataWithUrl:(NSString *)url withSection:(NSInteger)section{
     
@@ -146,7 +144,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-
+    
     return 4;
 }
 
@@ -193,15 +191,11 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     CGFloat h = 50;
-    switch (section) {
-        case 0:
-            h = 0;
-            break;
-        default:
-            break;
+    if (section == 0 || _modersArr[section].count<1 ) {//
+        h = 0;
     }
     return CGSizeMake(SCREEN_WIDTH,h);
-
+    
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     
@@ -225,13 +219,13 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
         static NSString *CellIdentifier = @"FindHeaderView";
         FindHeaderView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         //从缓存中获取 Headercell
-        NSArray * names = @[@"",@"热门漫画",@"关注排行",@"人气排行"];
+        NSArray * names = @[@"",@"主编推荐",@"热门排行",@"关注排行"];
         view.nameLabel.text = names[indexPath.section];
-
+        
         view.nameLabel.text = names[indexPath.section];
         view.moreBtn.tag = indexPath.section;
         [view.moreBtn addTarget:self action:@selector(MoreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         return view;
     }else{
         UICollectionReusableView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FindFooterView" forIndexPath:indexPath];
@@ -261,7 +255,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
         
         //        NSString * 🔥 = @"🔥"
         UIView *btnView = [[UIView alloc] init];
-//        btnView.backgroundColor = [UIColor whiteColor];
+        //        btnView.backgroundColor = [UIColor whiteColor];
         [_headerView addSubview:btnView];
         btnView.frame = CGRectMake(0, self.bannerScrollView.height+10, SCREEN_WIDTH, 100);
         
@@ -301,7 +295,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)MoreBtnClick:(UIButton *)btn{
-    NSArray * names = @[@"",@"热门漫画",@"关注排行",@"人气排行"];
+    NSArray * names = @[@"",@"主编推荐",@"热门排行",@"关注排行"];
     UIViewController *vc = [[TopTableViewController alloc]initWithUrl:_urls[btn.tag-1]];
     vc.title = names[btn.tag];
     vc.hidesBottomBarWhenPushed = YES;
@@ -312,7 +306,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
     UIViewController * vc;
     switch (btn.tag) {
         case 0:
-            vc=[[TopTableViewController alloc]initWithUrl:_urls[2]];
+            vc=[[TopTableViewController alloc]initWithUrl:_urls[1]];
             vc.title = @"人气榜";
             break;
         case 1:
@@ -332,3 +326,4 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end
+

@@ -14,5 +14,5 @@
 @property(strong, nonatomic) EpisodeModel * model;
 +(EpisodeCell *)cellWithTableView:(UITableView *)tableView;
 +(CGFloat)cellHeight;
-
+-(void)setModel:(EpisodeModel *)model withIsWatch:(BOOL ) isWatch;
 @end

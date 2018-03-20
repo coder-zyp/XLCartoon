@@ -164,7 +164,7 @@
     [[AFHTTPSessionManager manager] POST: URL_SAVE_USER_INFO  parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",[responseObject yy_modelToJSONString]);
         if (responseObject) {
-            [self updateUserInfo:param];
+//            [self updateUserInfo:param];
             [SVProgressHUD showSuccessWithStatus:Msg(responseObject)];
         }else{
             [SVProgressHUD showErrorWithStatus:Msg(responseObject)];

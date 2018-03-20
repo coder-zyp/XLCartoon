@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBottomConstraint;
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *slider;
-//@property (copy, nonatomic) SelectedBlock selectedBlock;
+@property (copy, nonatomic) void(^upDownClick)(BOOL isDown);
 @property (copy, nonatomic) void(^dismisssBlock)(void);
+@property (assign,nonatomic) BOOL isShowReadProgress;
 @end

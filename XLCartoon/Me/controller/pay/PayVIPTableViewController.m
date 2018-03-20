@@ -1,4 +1,4 @@
- //
+//
 //  PayVIPTableViewController.m
 //  XLCartoon
 //
@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
     self.tableView.tableFooterView = self.footerView;
@@ -33,8 +33,8 @@
 }
 -(void)getData{
     [super getData];
-    [SVProgressHUD show];//type 1 vip，2，咔咔豆
-    NSDictionary * param =@{@"type":@"1"};
+    [SVProgressHUD show];//type vip，102，咔咔豆 101
+    NSDictionary * param =@{@"type":@"102"};
     [AfnManager postListDataUrl:URL_PAY_PRODUCTS param:param result:^(NSDictionary *responseObject) {
         NSLog(@"%@",responseObject);
         for (NSDictionary * dict in OBJ(responseObject)) {
@@ -53,14 +53,9 @@
 
 -(void)payBtnClick:(UIButton *)btn{
     NSInteger index = self.tableView.indexPathForSelectedRow.row;
-//    [IAPHelperManager buy:self.modelArr[index].productId];
     PayProductModel * model = _modelArr[index];
-    [IAPHelperManager buy:self.modelArr[index].productId isProduction:self.modelArr[0].introduction SharedSecret:@"e11babd29cb44146b8529f34478f59df" sucess:^{
-        [AfnManager postUserAction:URL_PAY_SUCCESS param:@{@"id":model.id} Sucess:^(NSDictionary *responseObject) {
-            [APP_DELEGATE getUserInfo];
-        }];
-    }];
-
+    [IAPHelperManager buy:model.productId Id:model.id isProduction:model.introduction SharedSecret:@"e11babd29cb44146b8529f34478f59df"];
+    
     
 }
 
@@ -68,7 +63,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    if (self.modelArr.count) {
+        return 2;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -97,12 +95,12 @@
         label.layer.cornerRadius = 15;
         label.font = [UIFont systemFontOfSize:15];
         label.layer.borderWidth = 1;
-
+        
         label.layer.borderColor = COLOR_BUTTON.CGColor;
         label.sd_layout.rightSpaceToView(cell.contentView, 10).
         widthIs(60).heightIs(30).centerYEqualToView(cell.contentView);
         
-    
+        
         UIImageView * headImageView = [[UIImageView alloc]init];
         [cell addSubview:headImageView];
         headImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*230/750.0);
@@ -192,7 +190,7 @@
         [_footerView addSubview:lable];
         lable.numberOfLines = 0;
         lable.font = [UIFont systemFontOfSize:14];
-
+        
         
         NSString * string = @"温馨提示：\n1.此账号在非iOS终端上不能使用。\n2.您需要通过AppStore充值VIP。\n3.VIP为虚拟商品，仅限本书城使用，一经购买不得退换。\n4.请勿短时间内多次支付！购买后可在个人中心查看状态和到期时间，若VIP状态长时间无变化，请联系客服。\n5.客服电话：";
         
@@ -204,7 +202,7 @@
         [aStr appendAttributedString:[[NSAttributedString alloc]initWithString:telStr ]];
         [aStr appendAttributedString:[[NSAttributedString alloc]initWithString:wxstr  ]];
         aStr.yy_color = RGB(88, 88, 88);
-
+        
         [aStr yy_setTextHighlightRange:NSMakeRange(string.length, telStr.length)
                                  color:[UIColor blueColor]
                        backgroundColor:[UIColor clearColor]
@@ -213,7 +211,7 @@
                                  if (![telStr hasPrefix:@"Tel:"]) {
                                      [telStr insertString:@"Tel:" atIndex:0];
                                  }
-
+                                 
                                  if (@available(iOS 11.0, *)) {
                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
                                  }else{
@@ -233,7 +231,7 @@
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = @"WX13066798436";
         }];
-//        aStr.yy_font = lable.font;
+        //        aStr.yy_font = lable.font;
         
         lable.attributedText = aStr;
         YYTextLayout * layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) text:aStr];
@@ -247,3 +245,4 @@
     return _footerView;
 }
 @end
+

@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeNewViewController.h"
-#import "HomeFindTableViewController.h"
+//#import "HomeFindTableViewController.h"
 #import "FindCollectionViewController.h"
 #import "WMPageController.h"
 #import <PYSearchViewController.h>

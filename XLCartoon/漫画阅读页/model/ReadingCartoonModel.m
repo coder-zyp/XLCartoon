@@ -27,7 +27,7 @@
 
 -(CGFloat)heightTotal{
     if (_heightTotal<0.1) {
-        if (self.photos) {
+        if (self.episodeModel.watchState) {
             for (PhotoModel * model in self.photos) {
             
                 _heightTotal += SCREEN_WIDTH * model.h/ model.w;
@@ -43,7 +43,6 @@
 -(void)setPhotos:(NSArray<PhotoModel *> *)photos{
     _photos = photos;
     
-    
     [[SDImageCache sharedImageCache] clearMemory];
     
     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
@@ -53,9 +52,8 @@
             [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:model.src] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                 
             } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-//                model.image = image;
+                model.image = image;
             }];
-//        }
     }
 }
 @end

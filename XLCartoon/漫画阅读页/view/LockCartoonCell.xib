@@ -99,19 +99,29 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-h9-YS4">
-                        <rect key="frame" x="0.0" y="685.5" width="450" height="20"/>
+                        <rect key="frame" x="0.0" y="695.5" width="450" height="10"/>
                         <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="pQH-F3-JJA"/>
+                            <constraint firstAttribute="height" constant="10" id="pQH-F3-JJA"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23p-Fb-gn1">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="10"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="Jfs-sr-ghj"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="GbW-h9-YS4" secondAttribute="trailing" id="3XJ-a9-QAS"/>
+                    <constraint firstItem="23p-Fb-gn1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AtX-p0-MRh"/>
+                    <constraint firstItem="23p-Fb-gn1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dcj-eO-xU1"/>
                     <constraint firstItem="ed2-5p-LRj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DgN-ne-It8"/>
                     <constraint firstItem="DWf-rf-s74" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MRF-Aa-SaT"/>
                     <constraint firstItem="GbW-h9-YS4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tyl-2u-wBX"/>
                     <constraint firstAttribute="trailing" secondItem="DWf-rf-s74" secondAttribute="trailing" id="eBb-j4-M5E"/>
+                    <constraint firstAttribute="trailing" secondItem="23p-Fb-gn1" secondAttribute="trailing" id="eYN-Ll-dVA"/>
                     <constraint firstAttribute="bottom" secondItem="GbW-h9-YS4" secondAttribute="bottom" id="iDF-o8-a0z"/>
                     <constraint firstItem="ed2-5p-LRj" firstAttribute="top" secondItem="DWf-rf-s74" secondAttribute="bottom" constant="80" id="oTT-hD-3Lv"/>
                     <constraint firstItem="ed2-5p-LRj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="tbt-PW-Mwb"/>

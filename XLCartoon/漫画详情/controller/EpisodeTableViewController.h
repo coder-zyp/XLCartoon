@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EpisodeModel.h"
 #import "ZJPageViewController.h"
 
 
 @interface EpisodeTableViewController : ZJPageViewController
 @property (nonatomic,strong) NSString * continueReadingId;
+@property (nonatomic,strong) NSMutableArray <EpisodeModel *> * modelArr;
 
 @end

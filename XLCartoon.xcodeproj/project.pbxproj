@@ -99,6 +99,9 @@
 		0A9BEDF0201B075F0067DE97 /* UIButton+JKImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BEDEF201B075F0067DE97 /* UIButton+JKImagePosition.m */; };
 		0A9F129E1FF3442000F84FD4 /* ReadingCartoonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F129D1FF3442000F84FD4 /* ReadingCartoonModel.m */; };
 		0A9F12A11FF3489000F84FD4 /* ReadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F12A01FF3489000F84FD4 /* ReadingCell.m */; };
+		0A9F4CA7205CEEAE001C39B8 /* ReadingCartoonTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CA6205CEEAE001C39B8 /* ReadingCartoonTVC.m */; };
+		0A9F4CAB205F9213001C39B8 /* UnlockCartoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CA9205F9213001C39B8 /* UnlockCartoonView.m */; };
+		0A9F4CAC205F9213001C39B8 /* UnlockCartoonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F4CAA205F9213001C39B8 /* UnlockCartoonView.xib */; };
 		0AA91A7C204E9C8500C33ACB /* ReadingEpisodeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA91A7B204E9C8500C33ACB /* ReadingEpisodeWindow.m */; };
 		0AA91A80204E9E4200C33ACB /* ReadingEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA91A7E204E9E4200C33ACB /* ReadingEpisodeCell.m */; };
 		0AA91A81204E9E4200C33ACB /* ReadingEpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA91A7F204E9E4200C33ACB /* ReadingEpisodeCell.xib */; };
@@ -117,7 +120,6 @@
 		0AC928FF20465EC80008ED29 /* mediumPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AC928FD20465EC80008ED29 /* mediumPhotoCell.xib */; };
 		0AC9290220465FE40008ED29 /* NewCartoonCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9290120465FE40008ED29 /* NewCartoonCollectionViewController.m */; };
 		0AC929052046787D0008ED29 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC929042046787D0008ED29 /* BaseCollectionViewController.m */; };
-		0AD7E0D720132F840068E913 /* HomeFindTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7E0D620132F840068E913 /* HomeFindTableViewController.m */; };
 		0AE365A2201873DD00E36BD4 /* CommentListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE365A1201873DD00E36BD4 /* CommentListTableViewController.m */; };
 		0AE365A62018770300E36BD4 /* CommentPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE365A52018770300E36BD4 /* CommentPageController.m */; };
 		0AE8EF3820071578002BEDC0 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE8EF3720071578002BEDC0 /* TaskModel.m */; };
@@ -330,6 +332,11 @@
 		0A9F129D1FF3442000F84FD4 /* ReadingCartoonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadingCartoonModel.m; sourceTree = "<group>"; };
 		0A9F129F1FF3489000F84FD4 /* ReadingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingCell.h; sourceTree = "<group>"; };
 		0A9F12A01FF3489000F84FD4 /* ReadingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadingCell.m; sourceTree = "<group>"; };
+		0A9F4CA5205CEEAE001C39B8 /* ReadingCartoonTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingCartoonTVC.h; sourceTree = "<group>"; };
+		0A9F4CA6205CEEAE001C39B8 /* ReadingCartoonTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingCartoonTVC.m; sourceTree = "<group>"; };
+		0A9F4CA8205F9213001C39B8 /* UnlockCartoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockCartoonView.h; sourceTree = "<group>"; };
+		0A9F4CA9205F9213001C39B8 /* UnlockCartoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockCartoonView.m; sourceTree = "<group>"; };
+		0A9F4CAA205F9213001C39B8 /* UnlockCartoonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockCartoonView.xib; sourceTree = "<group>"; };
 		0AA91A7A204E9C8500C33ACB /* ReadingEpisodeWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingEpisodeWindow.h; sourceTree = "<group>"; };
 		0AA91A7B204E9C8500C33ACB /* ReadingEpisodeWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadingEpisodeWindow.m; sourceTree = "<group>"; };
 		0AA91A7D204E9E4200C33ACB /* ReadingEpisodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingEpisodeCell.h; sourceTree = "<group>"; };
@@ -357,8 +364,6 @@
 		0AC9290120465FE40008ED29 /* NewCartoonCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCartoonCollectionViewController.m; sourceTree = "<group>"; };
 		0AC929032046787D0008ED29 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		0AC929042046787D0008ED29 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
-		0AD7E0D520132F840068E913 /* HomeFindTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFindTableViewController.h; sourceTree = "<group>"; };
-		0AD7E0D620132F840068E913 /* HomeFindTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFindTableViewController.m; sourceTree = "<group>"; };
 		0AE365A0201873DD00E36BD4 /* CommentListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentListTableViewController.h; sourceTree = "<group>"; };
 		0AE365A1201873DD00E36BD4 /* CommentListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentListTableViewController.m; sourceTree = "<group>"; };
 		0AE365A42018770300E36BD4 /* CommentPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentPageController.h; sourceTree = "<group>"; };
@@ -538,6 +543,8 @@
 		0A2E95C81FF0C2B9002D6983 /* 漫画阅读页 */ = {
 			isa = PBXGroup;
 			children = (
+				0A9F4CA5205CEEAE001C39B8 /* ReadingCartoonTVC.h */,
+				0A9F4CA6205CEEAE001C39B8 /* ReadingCartoonTVC.m */,
 				0A7C5A66204AA1F40042D271 /* ReadingCartoonTVC1.h */,
 				0A7C5A67204AA1F40042D271 /* ReadingCartoonTVC1.m */,
 				0AE365A3201876B000E36BD4 /* 评论 */,
@@ -686,8 +693,6 @@
 				0A59ADDF1FE4FA5C0056EEB2 /* HomeNewViewController.m */,
 				0A85371920413C320007FF24 /* FindCollectionViewController.h */,
 				0A85371A20413C320007FF24 /* FindCollectionViewController.m */,
-				0AD7E0D520132F840068E913 /* HomeFindTableViewController.h */,
-				0AD7E0D620132F840068E913 /* HomeFindTableViewController.m */,
 				0A2DAA2220401D3A009B010D /* TopTableViewController.h */,
 				0A2DAA2320401D3A009B010D /* TopTableViewController.m */,
 				0AC9290020465FE40008ED29 /* NewCartoonCollectionViewController.h */,
@@ -1013,6 +1018,9 @@
 				0A7C5A61204A660A0042D271 /* LockCartoonCell.h */,
 				0A7C5A62204A660A0042D271 /* LockCartoonCell.m */,
 				0A7C5A63204A660A0042D271 /* LockCartoonCell.xib */,
+				0A9F4CA8205F9213001C39B8 /* UnlockCartoonView.h */,
+				0A9F4CA9205F9213001C39B8 /* UnlockCartoonView.m */,
+				0A9F4CAA205F9213001C39B8 /* UnlockCartoonView.xib */,
 				0A464866200C9EBC0037A03A /* BarrageSwitchBtn.h */,
 				0A464867200C9EBC0037A03A /* BarrageSwitchBtn.m */,
 				0A464864200C9E680037A03A /* BarrageSwitchBtn.xib */,
@@ -1221,6 +1229,7 @@
 				0AAF34C72021763D006F2254 /* 服务协议.docx in Resources */,
 				0A185C84202DD0780052A77C /* HomeNewCell.xib in Resources */,
 				0A42F372204CF34300C10D02 /* ReadingCommentCell.xib in Resources */,
+				0A9F4CAC205F9213001C39B8 /* UnlockCartoonView.xib in Resources */,
 				0AAF34C12021648E006F2254 /* 未成年人协议.docx in Resources */,
 				0A59AE4D1FE4FCB70056EEB2 /* Info.plist in Resources */,
 				0AC273772043F7830066CBAB /* readingHistory.plist in Resources */,
@@ -1350,6 +1359,7 @@
 				0AE8EF3D200731DE002BEDC0 /* UserInfoViewController.m in Sources */,
 				0A5C015D204FDD9E00DE3330 /* SliderView.m in Sources */,
 				0A05BCEF1FE91E2A003F6DDF /* FriendCircleDetailTVC.m in Sources */,
+				0A9F4CA7205CEEAE001C39B8 /* ReadingCartoonTVC.m in Sources */,
 				0A450355200CD7A000D3608E /* registerViewController.m in Sources */,
 				0A7C5A64204A660A0042D271 /* LockCartoonCell.m in Sources */,
 				0A464863200C823F0037A03A /* BarrageModel.m in Sources */,
@@ -1365,7 +1375,6 @@
 				0AEB68FD2019ADB40038B667 /* FridenCircliModel.m in Sources */,
 				0A42F375204D0AC600C10D02 /* ReadingTabBar.m in Sources */,
 				0AE8EF5E2009EE37002BEDC0 /* TypeCollectionViewController.m in Sources */,
-				0AD7E0D720132F840068E913 /* HomeFindTableViewController.m in Sources */,
 				0A7D532C2032C0F900595195 /* TopCell.m in Sources */,
 				0A17BB1D1FEA389200AF5744 /* BannerModel.m in Sources */,
 				0AA91A80204E9E4200C33ACB /* ReadingEpisodeCell.m in Sources */,
@@ -1387,6 +1396,7 @@
 				0A464868200C9EBC0037A03A /* BarrageSwitchBtn.m in Sources */,
 				0AF1D2891FF5E6D500C16EC3 /* HistoryTVC.m in Sources */,
 				0A59ADFD1FE4FA5C0056EEB2 /* ZJPageViewController.m in Sources */,
+				0A9F4CAB205F9213001C39B8 /* UnlockCartoonView.m in Sources */,
 				0A05BCE51FE8E19D003F6DDF /* PayHistoryCell.m in Sources */,
 				0A05BCEB1FE8F218003F6DDF /* TaskCell.m in Sources */,
 				0AF6A5091FECD71D00CDC28B /* CommentWindow.m in Sources */,

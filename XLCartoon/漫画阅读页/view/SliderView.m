@@ -14,7 +14,7 @@
     [super awakeFromNib];
 //    UINavigationControllerHideShowBarDuration
     self.frame = [UIScreen mainScreen].bounds;
-    
+    self.isShowReadProgress = NO;
     UIImage * thumbImage =[UIImage imageNamed:@"滑块"];
     [self.slider setThumbImage:thumbImage forState:UIControlStateNormal];
     [self.slider setThumbImage:thumbImage forState:UIControlStateSelected];
@@ -36,6 +36,7 @@
     // Initialization code
 }
 - (IBAction)dismissBtnClick:(id)sender {
+    
     self.viewBottomConstraint.constant = -50;
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
         [self layoutIfNeeded];
@@ -43,6 +44,12 @@
         [self removeFromSuperview];
         self.dismisssBlock();
     }];
+    
+}
+- (IBAction)upDownBtnClick:(UIButton *)sender {
+    if (self.slider.tag == 3) {
+        self.upDownClick(sender.tag == 2);
+    }
     
 }
 

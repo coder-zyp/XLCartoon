@@ -32,8 +32,8 @@ static NSString * const reuseIdentifier = @"PayCollectionViewControllerCell";
         self.layout = [[UICollectionViewFlowLayout alloc] init];
         self.layout.itemSize = CGSizeMake( w,h);
         self.layout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15);
-//        layout.minimumInteritemSpacing = 15;
-//        layout.minimumLineSpacing = 15;
+        //        layout.minimumInteritemSpacing = 15;
+        //        layout.minimumLineSpacing = 15;
         self.layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH*230/750.0);
         self.layout.footerReferenceSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.footerView.frame));
         self.modelArr = [NSMutableArray array];
@@ -55,8 +55,8 @@ static NSString * const reuseIdentifier = @"PayCollectionViewControllerCell";
     [self getData];
 }
 -(void)getData{
-    [SVProgressHUD show];//type 1 vip，2，咔咔豆
-    NSDictionary * param =@{@"type":@"2"};
+    [SVProgressHUD show];//type vip，102，咔咔豆 101
+    NSDictionary * param =@{@"type":@"101"};
     [AfnManager postListDataUrl:URL_PAY_PRODUCTS param:param result:^(NSDictionary *responseObject) {
         NSLog(@"%@",responseObject);
         for (NSDictionary * dict in OBJ(responseObject)) {
@@ -122,7 +122,7 @@ static NSString * const reuseIdentifier = @"PayCollectionViewControllerCell";
     }else{
         static NSString *CellIdentifier = @"FooterView";
         UICollectionReusableView * FooterCell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
+        
         if (self.modelArr.count) {
             
             [FooterCell addSubview:self.footerView];
@@ -133,16 +133,12 @@ static NSString * const reuseIdentifier = @"PayCollectionViewControllerCell";
     
 }
 -(void)payBtnClick:(UIButton *)btn{
-
-
+    
+    
     NSLog(@"%ld",self.selectRowIndex);
-    [IAPHelperManager buy:self.modelArr[self.selectRowIndex].productId isProduction:self.modelArr[0].introduction SharedSecret:nil sucess:^{
-        [AfnManager postWithUrl:URL_PAY_SUCCESS param:@{@"id":self.modelArr[self.selectRowIndex].id} Sucess:^(NSDictionary *responseObject) {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-            [APP_DELEGATE getUserInfo];
-        }];
-    }];
+    PayProductModel * model = self.modelArr[self.selectRowIndex];
+    [IAPHelperManager buy:model.productId Id:model.id isProduction:model.introduction SharedSecret:nil];
+    
 }
 -(UIView *)footerView{
     if (_footerView == nil) {
@@ -222,18 +218,19 @@ static NSString * const reuseIdentifier = @"PayCollectionViewControllerCell";
 
 
 /*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
+ // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+ - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
+ return NO;
+ }
+ 
+ - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+ return NO;
+ }
+ 
+ - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+ 
+ }
+ */
 
 @end
+

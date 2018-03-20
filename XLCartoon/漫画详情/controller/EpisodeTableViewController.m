@@ -9,11 +9,11 @@
 #import "EpisodeTableViewController.h"
 #import "EpisodeCell.h"
 #import "EpisodeModel.h"
-
+#import "ReadingCartoonTVC.h"
 #import "ReadingCartoonTVC1.h"
 
 @interface EpisodeTableViewController ()
-@property (nonatomic,strong) NSMutableArray <EpisodeModel *> * modelArr;
+
 @property (nonatomic,assign) BOOL mode;//正倒序
 
 @end
@@ -103,18 +103,15 @@
         self.mode = !self.mode;
         imageView.highlighted = self.mode;
         label.text = self.mode ? @"正序" : @"倒叙";
-        self.modelArr = [NSMutableArray array];
-        self.pageIndex = 0;
-        [SVProgressHUD showWithStatus: [NSString stringWithFormat:@"切换至%@",self.mode ?  @"倒叙":@"正序" ]];
-        [self getData];
+        [self.tableView reloadData];
     }
     
 }
 -(void)getData{
 
     NSDictionary * param =@{@"Id":self.model.cartoon.id,
-                            @"nowPage":[NSString stringWithFormat:@"%ld",self.pageIndex+1],
-                            @"mode":[NSString stringWithFormat:@"%d",self.mode]  //0正叙，1 倒叙
+                            @"nowPage":@"1",
+                            @"mode":@"0"  //0正叙，1 倒叙
                             };
     
     [AfnManager postListDataUrl:URL_EPISODE_CARTOON param:param result:^(NSDictionary *responseObject) {
@@ -152,22 +149,22 @@
     EpisodeCell *cell = [EpisodeCell cellWithTableView:tableView];
     //// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    cell.model = self.modelArr[indexPath.row];
+    
+    NSInteger row = _mode ? self.modelArr.count-1 - indexPath.row : indexPath.row;
+
+    [cell setModel:self.modelArr[row] withIsWatch:[self.continueReadingId isEqualToString:self.modelArr[row].cartoonSet.id]];
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    ReadingCartoonTVC1 * vc = [[ReadingCartoonTVC1 alloc]init];
-    vc.episodeIndex = indexPath.row;
+    NSInteger row = _mode ? self.modelArr.count-1 - indexPath.row : indexPath.row;
+    ReadingCartoonTVC * vc = [[ReadingCartoonTVC alloc]init];
+    vc.episodeIndex = row;
     vc.episodes = self.modelArr;
-    
     vc.cartoonModel = self.model;
     [self.navigationController pushViewController:vc animated:YES];
-    vc.popBlcok = ^(NSArray *cartoonIds) {
-            [self.tableView reloadData];
-    };
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

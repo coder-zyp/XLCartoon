@@ -55,22 +55,23 @@
         [text yy_setLineSpacing:7 range:NSMakeRange(0, text.length)];
         _userAgreementLabel.attributedText = text;
     }
-//    _userAgreementLabel.font = Font_Regular(13);
+    //    _userAgreementLabel.font = Font_Regular(13);
     _userAgreementLabel.textAlignment = NSTextAlignmentCenter;
     _userAgreementLabel.numberOfLines = 0;
     return _userAgreementLabel;
 }
 -(void)AgrrementPushWithFileName:(NSString *)fileName{
-
+    
     PrivacyAgreement * AgreementVC = [PrivacyAgreement new];
     AgreementVC.fileName = fileName;
     [self.navigationController pushViewController:AgreementVC animated:YES];
 }
 - (void)GetSMS:(id)sender{
-
+    
     NSMutableDictionary * param = [NSMutableDictionary dictionaryWithDictionary: @{@"phone":_textFieldArr[0].text}];
-    if (viewTypeFindPassword) [param setObject:@"1" forKey:@"condition"];
-    [AfnManager postUserAction:URL_SMS param:param Sucess:^(NSDictionary *responseObject) {
+    NSString * url = self.viewtype == viewTypeFindPassword ? URL_SMS_FIND_PSD : URL_SMS;
+    
+    [AfnManager postUserAction:url param:param Sucess:^(NSDictionary *responseObject) {
         self.codeId = OBJ(responseObject);
     }];
     
@@ -91,11 +92,11 @@
     }
     
     NSDictionary * dict = @{
-                             @"phone" : _textFieldArr[0].text,
-                             @"code" : _textFieldArr[1].text,
-                             @"userPassword" : _textFieldArr[2].text,
-                             @"id" : self.codeId
-                             };
+                            @"phone" : _textFieldArr[0].text,
+                            @"code" : _textFieldArr[1].text,
+                            @"userPassword" : _textFieldArr[2].text,
+                            @"id" : self.codeId
+                            };
     NSString * url;
     NSMutableDictionary * param = [NSMutableDictionary dictionaryWithDictionary:dict];
     switch (self.viewtype) {
@@ -148,7 +149,7 @@
     UIView * textsView = [UIView new];
     [self.view addSubview:textsView];
     textsView.sd_layout.topSpaceToView(backImageView, 35).centerXEqualToView(self.view).widthRatioToView(self.view, 0.7);
-
+    
     NSArray * placeholders = @[@"输入手机号",@"验证码",@"设置6~18位数字或字母"];
     NSArray * imageName = @[@"手机",@"验证码",@"密码"];
     NSMutableArray * arr = [NSMutableArray array];
@@ -227,7 +228,7 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-//    NSLog(@"%ld,%@",textField.text.length,string);
+    //    NSLog(@"%ld,%@",textField.text.length,string);
     if (textField.text.length == 18 && ![string isEqualToString:@""]) {
         [SVProgressHUD showInfoWithStatus:@"不能再输入了"];
     }
@@ -259,7 +260,7 @@
     return _countDownCode;
 }
 -(void)textFieldDidChange :(UITextField *)theTextField{
-//    NSLog( @"text changed: %@", theTextField.text);
+    //    NSLog( @"text changed: %@", theTextField.text);
     
     if (theTextField.text.length==11) {
         _countDownCode.backgroundColor = RGB(72, 34, 14);
@@ -275,13 +276,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+

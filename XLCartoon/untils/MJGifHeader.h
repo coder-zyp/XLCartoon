@@ -11,3 +11,7 @@
 @interface MJGifHeader : MJRefreshGifHeader
 
 @end
+
+@interface MJGifAutoFooter : MJRefreshAutoGifFooter
+
+@end

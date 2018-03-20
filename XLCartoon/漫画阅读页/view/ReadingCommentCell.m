@@ -21,8 +21,13 @@
     // Initialization code
     UIView * line = [UIView new];
     line.backgroundColor = COLOR_LIGHT_GARY;
-    line.frame = CGRectMake(0, 80, SCREEN_WIDTH, 0.5);
-
+    line.frame = CGRectMake(CGRectGetMinX(self.nameLabel.frame), 79, SCREEN_WIDTH, 0.7);
+    [self.contentView addSubview:line];
+    self.icon.layer.masksToBounds = YES;
+    self.icon.layer.cornerRadius = 15;
+    self.nameLabel.textColor = [UIColor grayColor];
+    self.timeLabel.textColor = [UIColor grayColor];
+    
 }
 -(void)setModel:(commentModel *)model{
     [self.icon sd_setImageWithURL:[NSURL URLWithString:model.user.headimgurl] placeholderImage:[UIImage imageNamed:@"usericonwithlogin"]] ;
