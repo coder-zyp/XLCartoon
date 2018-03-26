@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "BaseCollectionViewController.h"
 
-@interface TypeCollectionViewController : UICollectionViewController <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@interface TypeCollectionViewController : BaseCollectionViewController
 @property (nonatomic,strong) NSString * typeId;
 @property (nonatomic,strong) NSMutableArray <CartoonDetailModel *>* modelArr;
-@property (nonatomic,assign) int pageIndex;
-@property (nonatomic,assign) int pageToale;
+
 @end

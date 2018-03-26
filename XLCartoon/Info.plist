@@ -126,7 +126,7 @@
 	<string>发布混圈、上传头像时，需要访问您的照片</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>PINGFANG BOLD.TTF</string>
+		<string>FZLBJW.TTF</string>
 		<string>简剪纸.TTF</string>
 	</array>
 	<key>UIBackgroundModes</key>

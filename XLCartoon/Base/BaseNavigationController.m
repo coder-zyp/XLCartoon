@@ -58,22 +58,15 @@
     if (self.childViewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
-//    NSLog(@"class name>> %@",NSStringFromClass([viewController class]));
-//    NSString * className = NSStringFromClass([self class]);
-//    int i= 0;
-//    for (NSString * str  in self.WhiteNaviControllerNames) {
-//        if ([className isEqualToString:str ]) {
-//            [BaseNavigationController setWhiteNavi];
-//            break;
-//        }
-//        i++;
-//        if (i == self.WhiteNaviControllerNames.count) {
-//            viewController
-//        }
-//    }
+
     [super pushViewController:viewController animated:animated];
 }
-
+-(UIViewController *)popViewControllerAnimated:(BOOL)animated{
+    if ([SVProgressHUD isVisible]) {
+        [SVProgressHUD dismiss];
+    }
+    return [super popViewControllerAnimated:animated];
+}
 //-(BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
 //    int i = 0;
 //    int first = 0;
@@ -101,29 +94,4 @@
 //    return YES;
 //}
 
-//-(UIViewController *)popViewControllerAnimated:(BOOL)animated{
-//    [super popViewControllerAnimated:animated];
-//    
-//    int i = 0;
-//    int first = 0;
-//    int count =0;
-//    for (UIViewController * vc in self.viewControllers) {
-//        if([vc isKindOfClass:[CaricatureDetailViewController class]]){
-//            first = i;
-//            break;
-//        }
-//        i++;
-//    }
-//    for (UIViewController * vc in self.viewControllers) {
-//        if ([vc isKindOfClass:[CaricatureDetailViewController class]]) {
-//            count ++;
-//        }
-//    }
-//    //  pop出栈
-//    if (count > 1) {
-//        return [super popToViewController:(UIViewController *)self.viewControllers[first] animated:animated];
-//    }else{
-//        return [super popViewControllerAnimated:animated];
-//    }
-//}
 @end

@@ -29,10 +29,6 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.backgroundColor = COLOR_SYSTEM_GARY;
     self.tableView.tableFooterView = [UIView new];
-    
-//    self.tableView.estimatedRowHeight = 0;
-//    self.tableView.estimatedSectionFooterHeight = 0;
-//    self.tableView.estimatedSectionHeaderHeight = 0;
 
 }
 
