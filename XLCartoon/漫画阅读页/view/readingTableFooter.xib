@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="readingTableFooter">
+            <rect key="frame" x="0.0" y="0.0" width="526" height="132"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="8DS-du-Gpi">
+                    <rect key="frame" x="208.5" y="0.0" width="109" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="FHh-ER-t4u"/>
+                        <constraint firstAttribute="width" constant="109" id="pqf-MG-7a4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-f5-gPb">
+                    <rect key="frame" x="0.0" y="27" width="526" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="3jQ-AU-W0I"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="继续上拉跳到下一话" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn9-l8-xGK">
+                    <rect key="frame" x="0.0" y="58" width="526" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8DS-du-Gpi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="67a-Gj-ULF"/>
+                <constraint firstAttribute="trailing" secondItem="cb3-f5-gPb" secondAttribute="trailing" id="Hn4-OX-IyW"/>
+                <constraint firstItem="8DS-du-Gpi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HxP-5z-FIl"/>
+                <constraint firstAttribute="trailing" secondItem="dn9-l8-xGK" secondAttribute="trailing" id="XkE-8j-T6g"/>
+                <constraint firstItem="dn9-l8-xGK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cqe-K8-SWb"/>
+                <constraint firstItem="dn9-l8-xGK" firstAttribute="top" secondItem="8DS-du-Gpi" secondAttribute="bottom" constant="8" id="oth-QR-rGT"/>
+                <constraint firstItem="cb3-f5-gPb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="voT-hg-F7a"/>
+                <constraint firstItem="cb3-f5-gPb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="wQz-zl-TZe"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="icon" destination="8DS-du-Gpi" id="lns-eZ-StE"/>
+                <outlet property="progressLabel" destination="cb3-f5-gPb" id="Coc-uh-WMg"/>
+                <outlet property="tipLabel" destination="dn9-l8-xGK" id="biY-O0-P9n"/>
+            </connections>
+            <point key="canvasLocation" x="-44" y="-44"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1" width="109" height="50"/>
+    </resources>
+</document>

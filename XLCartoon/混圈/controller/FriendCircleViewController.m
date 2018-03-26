@@ -33,7 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //为self.view 添加背景颜色设置
-    
+    [self getData];
     self.view.backgroundColor = COLOR_SYSTEM_GARY;
     
     
@@ -51,7 +51,7 @@
             [self getData];
         }
     }];;
-    [self getData];
+    
     if (_isMyFriend) {
         self.title = @"我的混圈";
     }
@@ -63,7 +63,7 @@
 -(void)getData{
     [super getData];
     NSString * url =_isMyFriend ? URL_FRIEND_MY : URL_FRIEND_ALL;
-    NSDictionary * param = @{@"nowPage":[NSString stringWithFormat:@"%ld",self.pageIndex+1]
+    NSDictionary * param = @{@"nowPage":[NSString stringWithFormat:@"%d",self.pageIndex+1]
                              };
 
     if (!_isMyFriend) {

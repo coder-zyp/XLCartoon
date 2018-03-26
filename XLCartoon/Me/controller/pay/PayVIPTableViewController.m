@@ -11,6 +11,7 @@
 #import "IAPHelperManager.h"
 //#import "UserInfoCell.h"
 #import <YYText.h>
+#import "PayHistoryTableViewController.h"
 @interface PayVIPTableViewController ()
 @property (nonatomic,strong) NSMutableArray <PayProductModel *>* modelArr;
 @property (nonatomic,strong) UIView  * footerView;
@@ -30,6 +31,10 @@
     
     _modelArr = [NSMutableArray array];
     [self getData];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"充值记录" style:UIBarButtonItemStyleDone target:self action:@selector(pushToHistoryVC)];
+}
+-(void)pushToHistoryVC{
+    [self.navigationController pushViewController:[PayHistoryTableViewController new] animated:YES];
 }
 -(void)getData{
     [super getData];
@@ -54,11 +59,46 @@
 -(void)payBtnClick:(UIButton *)btn{
     NSInteger index = self.tableView.indexPathForSelectedRow.row;
     PayProductModel * model = _modelArr[index];
-    [IAPHelperManager buy:model.productId Id:model.id isProduction:model.introduction SharedSecret:@"e11babd29cb44146b8529f34478f59df"];
+    IAPHelperManager * manager = [IAPHelperManager sharedManager];
+    [manager buy:model.productId Id:model.id isProduction:model.introduction SharedSecret:@"e11babd29cb44146b8529f34478f59df"];
     
     
 }
-
+-(void)successedWithReceipt:(SKPaymentTransaction *)transaction param:(NSDictionary *)param{
+    SKPaymentTransaction * trans =transaction;
+    if(trans.error)
+    {
+        NSLog(@"%@",trans.error.localizedDescription);
+        [SVProgressHUD showErrorWithStatus:trans.error.localizedDescription];
+    }
+    else if(trans.transactionState == SKPaymentTransactionStatePurchased) {
+        
+        [AFHTTPSessionManager manager].requestSerializer.timeoutInterval = 60.0*10;
+        [[AFHTTPSessionManager manager] POST:URL_PAY_SUCCESS parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (IS_SUCCESS(responseObject)) {
+                [[SKPaymentQueue defaultQueue] finishTransaction:trans];
+                UIAlertView * view = [[UIAlertView alloc]initWithTitle:@"支付成功，重新进我的页面查看" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [view show];
+                
+                [APP_DELEGATE getUserInfo];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@\n请联系客服",Msg(responseObject)]];
+            }
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"payTransaction"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"payParam"];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [SVProgressHUD showErrorWithStatus:error.description];
+        }];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+    }
+    else if(trans.transactionState == SKPaymentTransactionStateFailed) {
+        NSLog(@"%@",trans.error.localizedDescription);
+        [SVProgressHUD showErrorWithStatus:@"SKPaymentTransactionStateFailed"];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"位置错误"];
+    }
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

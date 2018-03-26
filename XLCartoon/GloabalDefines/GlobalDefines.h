@@ -45,6 +45,8 @@
 #define USER_SYSTEM_LIGHT_SET(OBJ) [[NSUserDefaults standardUserDefaults] setObject:OBJ forKey:@"systemLight"];[[NSUserDefaults standardUserDefaults] synchronize]
 #define USER_SYSTEM_LIGHT [[NSUserDefaults standardUserDefaults] objectForKey: @"systemLight"]
 
+//
+
 #define USER_ID          [[[NSUserDefaults standardUserDefaults] objectForKey: @"userInfo"] objectForKey: @"userId"]
 #define USER_MODEL        APP_DELEGATE.userModel
 

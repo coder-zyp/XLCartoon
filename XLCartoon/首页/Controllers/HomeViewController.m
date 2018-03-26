@@ -110,6 +110,7 @@
     
     BaseNavigationController * navi =[[BaseNavigationController alloc]initWithRootViewController:searchViewController];
     [navi.navigationBar setBarTintColor:COLOR_NAVI];
+
 //    [self.navigationController pushViewController:searchViewController animated:NO];
     [self presentViewController:navi animated:YES completion:nil];
 }

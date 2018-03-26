@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
-@interface UserInfoViewController : BaseTableViewController
+@interface UserInfoViewController : UITableViewController
 
 @end

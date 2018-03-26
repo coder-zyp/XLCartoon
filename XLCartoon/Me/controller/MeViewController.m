@@ -121,7 +121,7 @@
 
     if (indexPath.section==0) {
         if (USER_MODEL) {
-            vc = [[UserInfoViewController alloc]initWithStyle:UITableViewStyleGrouped];
+            vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"UserInfoViewController"];
         }else{
             vc = [[LoginViewController alloc] init];
         }

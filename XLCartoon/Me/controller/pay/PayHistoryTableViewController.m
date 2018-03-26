@@ -9,7 +9,7 @@
 #import "PayHistoryTableViewController.h"
 #import "PayHistoryCell.h"
 @interface PayHistoryTableViewController ()
-
+@property (nonatomic,strong) NSMutableArray <payHistoryModel *>* modelArr;
 @end
 
 @implementation PayHistoryTableViewController
@@ -17,17 +17,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"充值记录";
+    [self getData];
+    self.modelArr =[ NSMutableArray array];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PayHistoryCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"PayHistoryCell"];
 }
 
+-(void)getData{
+    [super getData];
 
+    [AfnManager postListDataUrl:URL_PAY_HISTORY param:nil result:^(NSDictionary *responseObject) {
+        NSLog(@"%@",responseObject);
+        for (NSDictionary * dict in OBJ(responseObject)) {
+            [self.modelArr addObject:[payHistoryModel mj_objectWithKeyValues:dict]];
+        }
+        [self.tableView reloadData];
+        self.loading = NO;
+    }];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tablerView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.modelArr.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [PayHistoryCell cellWithTableView:tableView];
+    return [tableView dequeueReusableCellWithIdentifier:@"PayHistoryCell" forIndexPath:indexPath];
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    ((PayHistoryCell *)cell).model = self.modelArr[indexPath.row];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [PayHistoryCell cellHeight];

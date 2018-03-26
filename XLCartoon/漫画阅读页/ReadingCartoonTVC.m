@@ -21,6 +21,7 @@
 #import "ReadingTabBar.h"
 #import "ReadingEpisodeWindow.h"
 #import "SliderView.h"
+#import "readingTableFooter.h"
 
 @interface ReadingCartoonTVC () <UIScrollViewDelegate,UITabBarDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
 
@@ -32,7 +33,7 @@
 @property (nonatomic,strong) UIView * sectionHeaderView;
 
 @property (nonatomic,strong) UIButton * moreCommetBtn;
-@property (nonatomic,strong) UIView * tableFooter;
+@property (nonatomic,strong) readingTableFooter * tableFooter;
 @property (nonatomic,assign) BOOL  isGetData;
 
 @property (nonatomic,strong) BarrageManager *barrageManager;
@@ -152,7 +153,7 @@
     self.brightnessLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:0].CGColor;
     _currentInexPath = nil;
     _willDisplayInexPath = nil;
-    
+    self.tableFooter.hidden = YES;
     
     [self getImageData];
 }
@@ -183,11 +184,13 @@
             self.model = [ReadingCartoonModel mj_objectWithKeyValues:responseObject];
             self.model.episodeModel = episodeModel;
             [self reloadTable];
-            if (USER_MODEL.hobby) {
-                episodeModel.watchState = 1;
+            
+            if (REQ_ERROR(responseObject)==300) {
+                [self addLockView];
             }else{
-                if (REQ_ERROR(responseObject)==300) {
-                    [self addLockView];
+                episodeModel.watchState = 1;
+                if (USER_MODEL.hobby) {
+                    [APP_DELEGATE getUserInfo];
                 }
             }
         }
@@ -202,7 +205,7 @@
     if (y) {
         self.tableView.contentOffset = CGPointMake(0, y.floatValue) ;
     }
-    
+    self.tableFooter.hidden = NO;
 }
 
 -(void)getCommentData{
@@ -383,22 +386,15 @@
     return [UIView new];
 }
 
--(UIView *)tableFooter{
+-(readingTableFooter *)tableFooter{
     if (_tableFooter == nil) {
-        _tableFooter = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, TabbarHeight+40)];
-        UILabel * label = [UILabel new];
-        label.frame =CGRectMake(0, 0, SCREEN_WIDTH, 40);
-        label.textAlignment = NSTextAlignmentCenter;
-        label.tag = 1;
-        [_tableFooter addSubview:label];
+        _tableFooter = [[[NSBundle mainBundle] loadNibNamed:@"readingTableFooter" owner:nil options:nil]lastObject];
+        _tableFooter.frame = CGRectMake(0, 0, SCREEN_WIDTH, TabbarHeight+90);
+        _tableFooter.hidden = YES;
     }
     return _tableFooter;
 }
-#pragma mark- cellDelegate
--(void)LockCartoonCellUnlockSucess{
-    self.isGetData = NO;
-    [self.tableView reloadData];
-}
+
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
@@ -410,8 +406,8 @@
 
         [_tableView registerNib:[UINib nibWithNibName:@"ReadingCommentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ReadingCommentCell"];
         
-        _tableView.scrollsToTop = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.scrollsToTop = YES;
+        _tableView.showsVerticalScrollIndicator = YES;
         _tableView.tableFooterView = self.tableFooter;
     }
     return _tableView;
@@ -434,28 +430,44 @@
     
 }
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    UILabel * label = [self.tableFooter viewWithTag:1];
-    if ([label.text isEqualToString:@"100"]) {
+
+    if ([self.tableFooter.progressLabel.text isEqualToString:@"100%"] && !self.tableFooter.hidden) {
+        
         self.episodeIndex ++;
         [self resetData];
     }
 }
+#define footerReloadH 60
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-
-    CGFloat y = scrollView.contentOffset.y - scrollView.contentSize.height+scrollView.frame.size.height+1;
+    CGFloat y = scrollView.contentOffset.y - scrollView.contentSize.height+scrollView.frame.size.height;
+    
     if (y>0) {
         if (self.navigationController.isNavigationBarHidden) {
             [self changeNaviState];
         }
-        if (y>80) {
-            y = 80;
+        if (self.model) {
+            if (y>footerReloadH) {
+                y= footerReloadH;
+            }
+            int  scale = (y/footerReloadH)*100;
+            self.tableFooter.progressLabel.text = [NSString stringWithFormat:@"%d%%",scale];
+            
+            int count = y/(footerReloadH/17.0);
+            self.tableFooter.icon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",count+1]];
+            
+            if (y<footerReloadH){
+                self.tableFooter.tipLabel.text = @"继续上拉跳到下一话";
+            }else{
+                self.tableFooter.tipLabel.text = @"松开跳到下一话";
+            }
+        }else{
+            self.tableFooter.tipLabel.text = @"";
         }
-        int  scale = y*100/80;
-        NSString * text = [NSString stringWithFormat:@"%d",scale];
-        UILabel * label = [self.tableFooter viewWithTag:1];
-        label.text = text;
-    }else{
+        
+        
+    }else if (y<-1){
+        
         if (!self.navigationController.isNavigationBarHidden) {
             [self changeNaviState];
         }

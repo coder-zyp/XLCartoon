@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A05BCD51FE8B386003F6DDF /* PINGFANG BOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 0A05BCD41FE8B386003F6DDF /* PINGFANG BOLD.TTF */; };
 		0A05BCD91FE8B3F3003F6DDF /* 简剪纸.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 0A05BCD81FE8B3F3003F6DDF /* 简剪纸.TTF */; };
 		0A05BCDA1FE8B45D003F6DDF /* 简剪纸.TTF in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05BCD81FE8B3F3003F6DDF /* 简剪纸.TTF */; };
-		0A05BCDB1FE8B45D003F6DDF /* PINGFANG BOLD.TTF in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05BCD41FE8B386003F6DDF /* PINGFANG BOLD.TTF */; };
 		0A05BCE21FE8DE88003F6DDF /* PayHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A05BCE11FE8DE88003F6DDF /* PayHistoryTableViewController.m */; };
 		0A05BCE51FE8E19D003F6DDF /* PayHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A05BCE41FE8E19D003F6DDF /* PayHistoryCell.m */; };
 		0A05BCE81FE8EC0C003F6DDF /* TaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A05BCE71FE8EC0C003F6DDF /* TaskTableViewController.m */; };
@@ -28,6 +26,7 @@
 		0A185C84202DD0780052A77C /* HomeNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A185C82202DD0780052A77C /* HomeNewCell.xib */; };
 		0A1C6C271FEE371F00FED7F8 /* TypePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C6C261FEE371F00FED7F8 /* TypePageController.m */; };
 		0A1C6C511FEE664600FED7F8 /* CartoonSetPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C6C501FEE664600FED7F8 /* CartoonSetPageViewController.m */; };
+		0A2777E220661C430086D714 /* UIView+NE.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2777E120661C430086D714 /* UIView+NE.m */; };
 		0A290699201EBE3300285744 /* PayVIPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A290698201EBE3300285744 /* PayVIPTableViewController.m */; };
 		0A29069C201F128C00285744 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A29069B201F128C00285744 /* UserInfoCell.m */; };
 		0A2DAA2420401D3A009B010D /* TopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DAA2320401D3A009B010D /* TopTableViewController.m */; };
@@ -102,6 +101,12 @@
 		0A9F4CA7205CEEAE001C39B8 /* ReadingCartoonTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CA6205CEEAE001C39B8 /* ReadingCartoonTVC.m */; };
 		0A9F4CAB205F9213001C39B8 /* UnlockCartoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CA9205F9213001C39B8 /* UnlockCartoonView.m */; };
 		0A9F4CAC205F9213001C39B8 /* UnlockCartoonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F4CAA205F9213001C39B8 /* UnlockCartoonView.xib */; };
+		0A9F4CAF2062398D001C39B8 /* readingTableFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CAE2062398D001C39B8 /* readingTableFooter.m */; };
+		0A9F4CB12062399F001C39B8 /* readingTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F4CB02062399F001C39B8 /* readingTableFooter.xib */; };
+		0A9F4CB320624CE9001C39B8 /* FZLBJW.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F4CB220624CE9001C39B8 /* FZLBJW.TTF */; };
+		0A9F4CB420624D06001C39B8 /* FZLBJW.TTF in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9F4CB220624CE9001C39B8 /* FZLBJW.TTF */; };
+		0A9F4CB72063A26B001C39B8 /* payHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F4CB62063A26B001C39B8 /* payHistoryModel.m */; };
+		0A9F4CBC2063B308001C39B8 /* PayHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F4CBA2063B308001C39B8 /* PayHistoryCell.xib */; };
 		0AA91A7C204E9C8500C33ACB /* ReadingEpisodeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA91A7B204E9C8500C33ACB /* ReadingEpisodeWindow.m */; };
 		0AA91A80204E9E4200C33ACB /* ReadingEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA91A7E204E9E4200C33ACB /* ReadingEpisodeCell.m */; };
 		0AA91A81204E9E4200C33ACB /* ReadingEpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA91A7F204E9E4200C33ACB /* ReadingEpisodeCell.xib */; };
@@ -162,7 +167,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A05BCD41FE8B386003F6DDF /* PINGFANG BOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PINGFANG BOLD.TTF"; sourceTree = "<group>"; };
 		0A05BCD81FE8B3F3003F6DDF /* 简剪纸.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "简剪纸.TTF"; sourceTree = "<group>"; };
 		0A05BCE01FE8DE88003F6DDF /* PayHistoryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayHistoryTableViewController.h; sourceTree = "<group>"; };
 		0A05BCE11FE8DE88003F6DDF /* PayHistoryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayHistoryTableViewController.m; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 		0A1C6C261FEE371F00FED7F8 /* TypePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypePageController.m; sourceTree = "<group>"; };
 		0A1C6C4F1FEE664600FED7F8 /* CartoonSetPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartoonSetPageViewController.h; sourceTree = "<group>"; };
 		0A1C6C501FEE664600FED7F8 /* CartoonSetPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartoonSetPageViewController.m; sourceTree = "<group>"; };
+		0A2777E020661C430086D714 /* UIView+NE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NE.h"; sourceTree = "<group>"; };
+		0A2777E120661C430086D714 /* UIView+NE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NE.m"; sourceTree = "<group>"; };
 		0A290697201EBE3300285744 /* PayVIPTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayVIPTableViewController.h; sourceTree = "<group>"; };
 		0A290698201EBE3300285744 /* PayVIPTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayVIPTableViewController.m; sourceTree = "<group>"; };
 		0A29069A201F128C00285744 /* UserInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
@@ -337,6 +343,13 @@
 		0A9F4CA8205F9213001C39B8 /* UnlockCartoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockCartoonView.h; sourceTree = "<group>"; };
 		0A9F4CA9205F9213001C39B8 /* UnlockCartoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockCartoonView.m; sourceTree = "<group>"; };
 		0A9F4CAA205F9213001C39B8 /* UnlockCartoonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockCartoonView.xib; sourceTree = "<group>"; };
+		0A9F4CAD2062398D001C39B8 /* readingTableFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = readingTableFooter.h; sourceTree = "<group>"; };
+		0A9F4CAE2062398D001C39B8 /* readingTableFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = readingTableFooter.m; sourceTree = "<group>"; };
+		0A9F4CB02062399F001C39B8 /* readingTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = readingTableFooter.xib; sourceTree = "<group>"; };
+		0A9F4CB220624CE9001C39B8 /* FZLBJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZLBJW.TTF; sourceTree = "<group>"; };
+		0A9F4CB52063A26B001C39B8 /* payHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = payHistoryModel.h; sourceTree = "<group>"; };
+		0A9F4CB62063A26B001C39B8 /* payHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = payHistoryModel.m; sourceTree = "<group>"; };
+		0A9F4CBA2063B308001C39B8 /* PayHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayHistoryCell.xib; sourceTree = "<group>"; };
 		0AA91A7A204E9C8500C33ACB /* ReadingEpisodeWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingEpisodeWindow.h; sourceTree = "<group>"; };
 		0AA91A7B204E9C8500C33ACB /* ReadingEpisodeWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadingEpisodeWindow.m; sourceTree = "<group>"; };
 		0AA91A7D204E9E4200C33ACB /* ReadingEpisodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingEpisodeCell.h; sourceTree = "<group>"; };
@@ -414,11 +427,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9F4CB420624D06001C39B8 /* FZLBJW.TTF in Frameworks */,
 				0A0E771A2020511200453F49 /* QuickLook.framework in Frameworks */,
 				0A0E7718202050F100453F49 /* QuartzCore.framework in Frameworks */,
 				0A05BCDA1FE8B45D003F6DDF /* 简剪纸.TTF in Frameworks */,
 				0AC2736E2043BD3C0066CBAB /* StoreKit.framework in Frameworks */,
-				0A05BCDB1FE8B45D003F6DDF /* PINGFANG BOLD.TTF in Frameworks */,
 				6CE1446BDD866E368CDCCA66 /* libPods-XLCartoon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,13 +456,13 @@
 		0A05BCD71FE8B3D7003F6DDF /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A9F4CB220624CE9001C39B8 /* FZLBJW.TTF */,
 				0AAF34C62021763D006F2254 /* 服务协议.docx */,
 				0AAF34C4202170A6006F2254 /* 隐私协议.docx */,
 				0AAF34C220216B7C006F2254 /* mj-header@2x.gif */,
 				0AAF34C02021648E006F2254 /* 未成年人协议.docx */,
 				0AE8EF5A2009C5B8002BEDC0 /* address.plist */,
 				0A05BCD81FE8B3F3003F6DDF /* 简剪纸.TTF */,
-				0A05BCD41FE8B386003F6DDF /* PINGFANG BOLD.TTF */,
 				0AC273762043F7830066CBAB /* readingHistory.plist */,
 			);
 			path = resources;
@@ -466,6 +479,11 @@
 				0A7D531C20316AA100595195 /* PayCollectionViewController.m */,
 				0A6B1D8E2028282300DF73B4 /* PayProductModel.h */,
 				0A6B1D8F2028282300DF73B4 /* PayProductModel.m */,
+				0A9F4CB52063A26B001C39B8 /* payHistoryModel.h */,
+				0A9F4CB62063A26B001C39B8 /* payHistoryModel.m */,
+				0A05BCE31FE8E19D003F6DDF /* PayHistoryCell.h */,
+				0A05BCE41FE8E19D003F6DDF /* PayHistoryCell.m */,
+				0A9F4CBA2063B308001C39B8 /* PayHistoryCell.xib */,
 				0A7D531E20316B5F00595195 /* PayKakaCell.h */,
 				0A7D531F20316B5F00595195 /* PayKakaCell.m */,
 				0A7D532020316B5F00595195 /* PayKakaCell.xib */,
@@ -849,8 +867,6 @@
 				0A29069B201F128C00285744 /* UserInfoCell.m */,
 				0ABA90851FFE1EC200894D09 /* ClearCacheTableViewCell.h */,
 				0ABA90861FFE1EC200894D09 /* ClearCacheTableViewCell.m */,
-				0A05BCE31FE8E19D003F6DDF /* PayHistoryCell.h */,
-				0A05BCE41FE8E19D003F6DDF /* PayHistoryCell.m */,
 				0A05BCE91FE8F218003F6DDF /* TaskCell.h */,
 				0A05BCEA1FE8F218003F6DDF /* TaskCell.m */,
 				0A450357200DB64300D3608E /* MyMessageCell.h */,
@@ -907,6 +923,8 @@
 				0A59AE611FE4FF440056EEB2 /* UITextField+CSText.m */,
 				0A9BEDEE201B075E0067DE97 /* UIButton+JKImagePosition.h */,
 				0A9BEDEF201B075F0067DE97 /* UIButton+JKImagePosition.m */,
+				0A2777E020661C430086D714 /* UIView+NE.h */,
+				0A2777E120661C430086D714 /* UIView+NE.m */,
 			);
 			path = untils;
 			sourceTree = "<group>";
@@ -1027,6 +1045,9 @@
 				0A5C015A204FDD9E00DE3330 /* SliderView.h */,
 				0A5C015B204FDD9E00DE3330 /* SliderView.m */,
 				0A5C015F204FDE0800DE3330 /* SliderView.xib */,
+				0A9F4CAD2062398D001C39B8 /* readingTableFooter.h */,
+				0A9F4CAE2062398D001C39B8 /* readingTableFooter.m */,
+				0A9F4CB02062399F001C39B8 /* readingTableFooter.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1213,8 +1234,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7D532E2032C1B500595195 /* TopCell.xib in Resources */,
-				0A05BCD51FE8B386003F6DDF /* PINGFANG BOLD.TTF in Resources */,
 				0AA91A81204E9E4200C33ACB /* ReadingEpisodeCell.xib in Resources */,
+				0A9F4CB320624CE9001C39B8 /* FZLBJW.TTF in Resources */,
 				0AE8EF5B2009C5B8002BEDC0 /* address.plist in Resources */,
 				0AAF34C5202170A6006F2254 /* 隐私协议.docx in Resources */,
 				0A464865200C9E680037A03A /* BarrageSwitchBtn.xib in Resources */,
@@ -1229,6 +1250,8 @@
 				0AAF34C72021763D006F2254 /* 服务协议.docx in Resources */,
 				0A185C84202DD0780052A77C /* HomeNewCell.xib in Resources */,
 				0A42F372204CF34300C10D02 /* ReadingCommentCell.xib in Resources */,
+				0A9F4CBC2063B308001C39B8 /* PayHistoryCell.xib in Resources */,
+				0A9F4CB12062399F001C39B8 /* readingTableFooter.xib in Resources */,
 				0A9F4CAC205F9213001C39B8 /* UnlockCartoonView.xib in Resources */,
 				0AAF34C12021648E006F2254 /* 未成年人协议.docx in Resources */,
 				0A59AE4D1FE4FCB70056EEB2 /* Info.plist in Resources */,
@@ -1361,6 +1384,7 @@
 				0A05BCEF1FE91E2A003F6DDF /* FriendCircleDetailTVC.m in Sources */,
 				0A9F4CA7205CEEAE001C39B8 /* ReadingCartoonTVC.m in Sources */,
 				0A450355200CD7A000D3608E /* registerViewController.m in Sources */,
+				0A2777E220661C430086D714 /* UIView+NE.m in Sources */,
 				0A7C5A64204A660A0042D271 /* LockCartoonCell.m in Sources */,
 				0A464863200C823F0037A03A /* BarrageModel.m in Sources */,
 				0A7C5A68204AA1F50042D271 /* ReadingCartoonTVC1.m in Sources */,
@@ -1370,6 +1394,7 @@
 				0AC928FE20465EC80008ED29 /* mediumPhotoCell.m in Sources */,
 				0ABD473D2015E07800841411 /* everyDayShowView.m in Sources */,
 				0A1C6C271FEE371F00FED7F8 /* TypePageController.m in Sources */,
+				0A9F4CAF2062398D001C39B8 /* readingTableFooter.m in Sources */,
 				0ABD47382015D35D00841411 /* everyDayShowWindow.m in Sources */,
 				0A85371B20413C320007FF24 /* FindCollectionViewController.m in Sources */,
 				0AEB68FD2019ADB40038B667 /* FridenCircliModel.m in Sources */,
@@ -1396,6 +1421,7 @@
 				0A464868200C9EBC0037A03A /* BarrageSwitchBtn.m in Sources */,
 				0AF1D2891FF5E6D500C16EC3 /* HistoryTVC.m in Sources */,
 				0A59ADFD1FE4FA5C0056EEB2 /* ZJPageViewController.m in Sources */,
+				0A9F4CB72063A26B001C39B8 /* payHistoryModel.m in Sources */,
 				0A9F4CAB205F9213001C39B8 /* UnlockCartoonView.m in Sources */,
 				0A05BCE51FE8E19D003F6DDF /* PayHistoryCell.m in Sources */,
 				0A05BCEB1FE8F218003F6DDF /* TaskCell.m in Sources */,

@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 //typedef void(^IAPBlock)(NSString * text);
+#import <StoreKit/StoreKit.h>
+
 
 @interface IAPHelperManager : NSObject
-
-+(void)buy:(NSString *)productID Id:(NSString *)ID  isProduction:(BOOL)isProduction SharedSecret:(NSString *)sharedSecret;
++ (instancetype)sharedManager;
+-(void)buy:(NSString *)productID Id:(NSString *)ID  isProduction:(BOOL)isProduction SharedSecret:(NSString *)sharedSecret;
++(void)checkMissTransaction;
 
 @end

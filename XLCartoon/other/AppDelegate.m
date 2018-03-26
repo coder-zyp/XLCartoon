@@ -17,7 +17,7 @@
 #import "everyDayShowWindow.h"
 #import <UMErrorCatch/UMErrorCatch.h>
 #import <WRNavigationBar.h>
-
+#import "IAPHelperManager.h"
 #import <UMPush/UMessage.h>
 #import <UserNotifications/UserNotifications.h>
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -60,6 +60,7 @@
     }
     if (USER_ID) [self getUserInfo];
     /* 设置友盟appkey */
+    [IAPHelperManager checkMissTransaction];
     
     [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a531521b27b0a24fc000063"];
     
@@ -130,7 +131,7 @@
     if ([self checkEverydateTaskState] && USER_ID) {
         [everyDayShowWindow share];
     }
-    
+    [IAPHelperManager checkMissTransaction];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if ([shareWindow share].shareState == shareState_NoResult) {
             [shareWindow  shareSuccess];

@@ -242,7 +242,7 @@ static NSString * const reuseIdentifierSectionOne = @"reuseIdentifierSectionOne"
         _bannerScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_WIDTH*0.4) delegate:self placeholderImage:Z_PlaceholderImg];
         _bannerScrollView.currentPageDotColor = COLOR_NAVI;
         _bannerScrollView.autoScrollTimeInterval = 5;
-        _bannerScrollView.backgroundColor = COLOR_NAVI;
+        _bannerScrollView.backgroundColor = [UIColor whiteColor];
     }
     return _bannerScrollView;
 }

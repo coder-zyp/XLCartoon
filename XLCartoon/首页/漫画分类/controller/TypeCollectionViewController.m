@@ -36,8 +36,7 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageIndex = 0 ;
-    _pageToale = 0;
+
     _modelArr = [NSMutableArray array];
     [self getData];
     self.collectionView.emptyDataSetSource = self;
@@ -64,14 +63,9 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
     [super viewDidAppear:animated];
     //    [self.collectionView reloadData];
 }
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-    
-    NSString *text  = @"该分类暂无漫画";
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
-    return attStr;
-}
+
 -(void)getData{
-    
+    [super getData];
     NSDictionary * param = @{@"nowPage":[NSString stringWithFormat:@"%d",self.pageIndex+1],
                              @"cartoonType":self.typeId
                              };
@@ -91,10 +85,33 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
         }
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
-
+        self.loading = NO;
     }];
     
     
+}
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    
+    NSString *text  = @"该分类暂无漫画哦~";
+    if (self.isLoading) {
+        text = @"";
+    }
+
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    // 设置所有字体大小为 #15
+    [attStr addAttribute:NSFontAttributeName
+                   value:[UIFont systemFontOfSize:15.0]
+                   range:NSMakeRange(0, text.length)];
+    // 设置所有字体颜色为浅灰色
+    [attStr addAttribute:NSForegroundColorAttributeName
+                   value:[UIColor lightGrayColor]
+                   range:NSMakeRange(0, text.length)];
+    
+    
+    return attStr;
+}
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

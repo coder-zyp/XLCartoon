@@ -37,8 +37,7 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageIndex = 0 ;
-    _pageToale = 0;
+
     _modelArr = [NSMutableArray array];
 
     self.collectionView.emptyDataSetSource = self;
@@ -70,14 +69,9 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
     return NO;
 }
 
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-    
-    NSString *text  = @"暂无收藏";
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
-    return attStr;
-}
--(void)getData{
 
+-(void)getData{
+    [super getData];
     NSDictionary * param = @{@"nowPage":[NSString stringWithFormat:@"%d",self.pageIndex+1]};
     
     [AfnManager postListDataUrl:URL_BOOKSHELF_FOLLOW param:param result:^(NSDictionary *responseObject) {
@@ -95,6 +89,7 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
         }
         [self.collectionView.mj_footer endRefreshing];
         [self.collectionView.mj_header endRefreshing];
+        self.loading = NO;
     }];
 }
 - (void)didReceiveMemoryWarning {

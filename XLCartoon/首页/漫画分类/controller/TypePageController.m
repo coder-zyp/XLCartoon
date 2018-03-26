@@ -23,7 +23,7 @@
         self.menuViewStyle  = WMMenuViewStyleLine;
         /** 是否自动通过字符串计算 MenuItem 的宽度，默认为 NO. */
         self.automaticallyCalculatesItemWidths = YES;
-        self.progressHeight = 1;
+        self.progressHeight = 2.5;
         self.titleColorSelected = COLOR_NAVI;
         self.titleColorNormal = [UIColor grayColor];
         self.titleSizeNormal = 16.3;

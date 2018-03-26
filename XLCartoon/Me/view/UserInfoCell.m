@@ -7,9 +7,10 @@
 //
 
 #import "UserInfoCell.h"
+#import <UIButton+WebCache.h>
 @interface UserInfoCell()
 @property (nonatomic,strong) UIImageView * vipIcon;
-@property (nonatomic,strong) UIImageView * userIcon;
+@property (nonatomic,strong) UIButton * userIcon;
 @property (nonatomic,strong) UILabel * nameLabel;
 @property (nonatomic,strong) UILabel * kakaLabel;
 @end
@@ -20,7 +21,6 @@
     static NSString * cellId = @"UserInfoCell";
     UserInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell = [[UserInfoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-//    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -31,7 +31,7 @@
         
         self.nameLabel = [UILabel new];
         self.kakaLabel = [UILabel new];
-        self.userIcon = [UIImageView new];
+        self.userIcon = [UIButton new];
         
         [self.contentView sd_addSubviews:@[self.nameLabel,self.kakaLabel,self.userIcon]];
 
@@ -64,7 +64,7 @@
     _model = model;
     self.nameLabel.text = USER_MODEL.username;
     self.kakaLabel.text = [NSString stringWithFormat: @"咔咔豆：%@",USER_MODEL.integral];
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString: APP_DELEGATE.userModel.headimgurl]];
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString: APP_DELEGATE.userModel.headimgurl] forState:UIControlStateNormal placeholderImage:Z_PlaceholderImg];
     self.vipIcon.highlighted = USER_MODEL.vipId;
 }
 - (void)awakeFromNib {

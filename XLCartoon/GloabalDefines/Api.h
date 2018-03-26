@@ -18,8 +18,8 @@
 
 
 
-//#define BASE_URL    @"http://www.kakamanhua.com/Comic/"
-#define BASE_URL    @"http://192.168.1.39:8080/Comic/"
+#define BASE_URL    @"http://www.kakamanhua.com/Comic/"
+//#define BASE_URL    @"http://192.168.1.39:8080/Comic/"
 //#define BASE_URL    @"http://distributor.kakamanhua.com/Comic/"
 /***平台分享回调***/
 #define URL_SHARE_BACK BASE_URL @"app/back/share.do"
@@ -169,6 +169,8 @@
 #define URL_PAY_ORDER BASE_URL @"app/ios/qpp/generateOrder.do"
 //支付成功 验签
 #define URL_PAY_SUCCESS BASE_URL @"app/ios/qpp/payProduct.do"
+//支付成功 验签
+#define URL_PAY_HISTORY BASE_URL @"qpp/comic/get/allorder232.do"
 
 #endif /* Api_h */
 
