@@ -92,7 +92,6 @@
 		0A85372E20414D1B0007FF24 /* FindHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A85372C20414D1B0007FF24 /* FindHeaderView.m */; };
 		0A85372F20414D1B0007FF24 /* FindHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A85372D20414D1B0007FF24 /* FindHeaderView.xib */; };
 		0A91E9942022D942000257C9 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91E9922022D941000257C9 /* AboutUsViewController.m */; };
-		0A921F8C1FFB214800E1DACE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A921F8B1FFB214800E1DACE /* Reachability.m */; };
 		0A921F931FFCC8DE00E1DACE /* OCBarrageGradientBackgroundColorDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A921F911FFCC8DE00E1DACE /* OCBarrageGradientBackgroundColorDescriptor.m */; };
 		0A921F961FFCC91300E1DACE /* OCBarrageGradientBackgroundColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A921F941FFCC91300E1DACE /* OCBarrageGradientBackgroundColorCell.m */; };
 		0A9BEDF0201B075F0067DE97 /* UIButton+JKImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BEDEF201B075F0067DE97 /* UIButton+JKImagePosition.m */; };
@@ -146,6 +145,7 @@
 		0AF6A5001FEBDA3E00CDC28B /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6A4FF1FEBDA3E00CDC28B /* BaseTableViewController.m */; };
 		0AF6A5031FECAC6900CDC28B /* CartoonTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6A5021FECAC6900CDC28B /* CartoonTypeModel.m */; };
 		0AF6A5091FECD71D00CDC28B /* CommentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6A5081FECD71D00CDC28B /* CommentWindow.m */; };
+		0AFA9B8320944D44004873AD /* UITextView+YLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA9B8220944D44004873AD /* UITextView+YLTextView.m */; };
 		6CE1446BDD866E368CDCCA66 /* libPods-XLCartoon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F81D99D64AA751C5F8C50B /* libPods-XLCartoon.a */; };
 /* End PBXBuildFile section */
 
@@ -326,8 +326,6 @@
 		0A85372D20414D1B0007FF24 /* FindHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindHeaderView.xib; sourceTree = "<group>"; };
 		0A91E9922022D941000257C9 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		0A91E9932022D941000257C9 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
-		0A921F8A1FFB214700E1DACE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		0A921F8B1FFB214800E1DACE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		0A921F911FFCC8DE00E1DACE /* OCBarrageGradientBackgroundColorDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCBarrageGradientBackgroundColorDescriptor.m; sourceTree = "<group>"; };
 		0A921F921FFCC8DE00E1DACE /* OCBarrageGradientBackgroundColorDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageGradientBackgroundColorDescriptor.h; sourceTree = "<group>"; };
 		0A921F941FFCC91300E1DACE /* OCBarrageGradientBackgroundColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCBarrageGradientBackgroundColorCell.m; sourceTree = "<group>"; };
@@ -417,6 +415,8 @@
 		0AF6A5021FECAC6900CDC28B /* CartoonTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CartoonTypeModel.m; sourceTree = "<group>"; };
 		0AF6A5071FECD71D00CDC28B /* CommentWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentWindow.h; sourceTree = "<group>"; };
 		0AF6A5081FECD71D00CDC28B /* CommentWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentWindow.m; sourceTree = "<group>"; };
+		0AFA9B8120944D44004873AD /* UITextView+YLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+YLTextView.h"; sourceTree = "<group>"; };
+		0AFA9B8220944D44004873AD /* UITextView+YLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+YLTextView.m"; sourceTree = "<group>"; };
 		3A97FDD58AD18761A0D70C98 /* Pods-XLCartoon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLCartoon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XLCartoon/Pods-XLCartoon.debug.xcconfig"; sourceTree = "<group>"; };
 		B4627C04BC699473FFA0DAE0 /* Pods-XLCartoon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLCartoon.release.xcconfig"; path = "Pods/Target Support Files/Pods-XLCartoon/Pods-XLCartoon.release.xcconfig"; sourceTree = "<group>"; };
 		E1F81D99D64AA751C5F8C50B /* libPods-XLCartoon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XLCartoon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -913,8 +913,6 @@
 				0A6BF4AD20064E2200B3B67F /* shareWindow.m */,
 				0A450363200DFA5C00D3608E /* MJGifHeader.h */,
 				0A450364200DFA5C00D3608E /* MJGifHeader.m */,
-				0A921F8A1FFB214700E1DACE /* Reachability.h */,
-				0A921F8B1FFB214800E1DACE /* Reachability.m */,
 				0AF6A4F71FEBAAD000CDC28B /* UIResponder+Custom.h */,
 				0AF6A4F81FEBAAD000CDC28B /* UIResponder+Custom.m */,
 				0A59AE5C1FE4FF440056EEB2 /* UIColor+Hexadecimal.h */,
@@ -954,6 +952,8 @@
 		0A59AE871FE50A060056EEB2 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				0AFA9B8120944D44004873AD /* UITextView+YLTextView.h */,
+				0AFA9B8220944D44004873AD /* UITextView+YLTextView.m */,
 				0A6E40022010575B0013EDF9 /* KSGuaidView */,
 				0A59AF271FE510FD0056EEB2 /* FSCustomBUtton */,
 			);
@@ -1364,6 +1364,7 @@
 				0A59AE4E1FE4FCB70056EEB2 /* main.m in Sources */,
 				0AF6A5001FEBDA3E00CDC28B /* BaseTableViewController.m in Sources */,
 				0AC9290220465FE40008ED29 /* NewCartoonCollectionViewController.m in Sources */,
+				0AFA9B8320944D44004873AD /* UITextView+YLTextView.m in Sources */,
 				0AE8EF67200A0187002BEDC0 /* TypeCollectionCell.m in Sources */,
 				0A45035A200DB64300D3608E /* MyMessageCell.m in Sources */,
 				0A2DAA2420401D3A009B010D /* TopTableViewController.m in Sources */,
@@ -1450,7 +1451,6 @@
 				0A59AE661FE4FF440056EEB2 /* UIColor+Hexadecimal.m in Sources */,
 				0A9F129E1FF3442000F84FD4 /* ReadingCartoonModel.m in Sources */,
 				0A59AE381FE4FBD20056EEB2 /* MeViewController.m in Sources */,
-				0A921F8C1FFB214800E1DACE /* Reachability.m in Sources */,
 				0AA91A7C204E9C8500C33ACB /* ReadingEpisodeWindow.m in Sources */,
 				0A05BCE21FE8DE88003F6DDF /* PayHistoryTableViewController.m in Sources */,
 				0A59AE1B1FE4FB470056EEB2 /* BaseTabBarController.m in Sources */,
@@ -1626,12 +1626,13 @@
 				CODE_SIGN_ENTITLEMENTS = XLCartoon/XLCartoon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U7DBHN5PE4;
+				DEVELOPMENT_TEAM = F74D54CRSE;
 				GCC_PREFIX_HEADER = XLCartoon/other/PrefixHeader.pch;
 				INFOPLIST_FILE = XLCartoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.StarAustrian.KaKaCartoon;
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.StarAustrian.KaKaCartoons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1648,12 +1649,13 @@
 				CODE_SIGN_ENTITLEMENTS = XLCartoon/XLCartoon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U7DBHN5PE4;
+				DEVELOPMENT_TEAM = F74D54CRSE;
 				GCC_PREFIX_HEADER = XLCartoon/other/PrefixHeader.pch;
 				INFOPLIST_FILE = XLCartoon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.StarAustrian.KaKaCartoon;
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.StarAustrian.KaKaCartoons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -21,7 +21,7 @@
 #import "NewCartoonCollectionViewController.h"
 #import "TypePageController.h"
 
-@interface FindCollectionViewController ()<SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate>
+@interface FindCollectionViewController ()<SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic,strong) NSMutableArray <NSMutableArray <CartoonDetailModel * > *>* modersArr;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>* bannerModelArr;

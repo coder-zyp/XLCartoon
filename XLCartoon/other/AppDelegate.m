@@ -44,9 +44,8 @@
     
     // Override point for customization after application launch.
 //    [CommentWindow share];
-    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
-    keyboardManager.shouldResignOnTouchOutside = YES; // 控制点击背景是否收起键盘
-    keyboardManager.toolbarTintColor = COLOR_Orange_Red;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES; // 控制点击背景是否收起键盘
+    [IQKeyboardManager sharedManager].toolbarTintColor = COLOR_Orange_Red;
     
     [SVProgressHUD setMinimumDismissTimeInterval:1.25f];
     

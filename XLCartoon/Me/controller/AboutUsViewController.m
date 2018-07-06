@@ -43,11 +43,6 @@
     iconView.layer.cornerRadius = 15.f;
     iconView.layer.masksToBounds = YES;
     
-    //    UILabel * displayName = [[UILabel alloc] init];
-    //    displayName.text = app_Name;
-    //    displayName.font = [UIFont systemFontOfSize:19.f];
-    //    displayName.textAlignment = NSTextAlignmentCenter;
-    //    displayName.textColor = rgba(54, 54, 54, 1);
     
     UIImageView * displayNameImg = [[UIImageView alloc] init];
     displayNameImg.image = [UIImage imageNamed:@"register-back"];

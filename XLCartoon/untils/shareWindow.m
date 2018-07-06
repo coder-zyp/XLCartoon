@@ -28,7 +28,6 @@
             window = [[shareWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         }
     });
-    
     return window;
 }
 +(shareWindow *)shareWithModel:(cartoon *)model cartoonSetId:(NSString *)cartoonSetId sucess:(shareSucessBlock)sucess{

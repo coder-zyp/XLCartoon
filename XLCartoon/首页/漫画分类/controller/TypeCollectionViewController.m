@@ -129,8 +129,7 @@ static NSString * const reuseIdentifier = @"TypeCollectionCell";
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
+
     ((TypeCollectionCell *)cell).model = self.modelArr[indexPath.row];
     return cell;
 }

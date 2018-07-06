@@ -52,7 +52,7 @@
 /***每日更新***/
 #define URL_EVERYDAY_UPDATA BASE_URL @"ios/qpp/comic/get/cartoon/byfollow/news.do"
 //获取banner图
-#define URL_GETBANNER BASE_URL @"ios/qpp/comic/get/banner.do"
+#define URL_GETBANNER BASE_URL @"qpp/comic/get/banner.do"
 //最新漫画列表
 #define URL_NEW_CARTOON BASE_URL @"ios/qpp/comic/get/allcartoon/new.do"
 //首页

@@ -10,6 +10,10 @@
 
 /**********************漫画详情类**************************/
 @implementation cartoon
+-(NSString *)cartoonName{
+    return _cartoonName;
+}
+
 -(NSString *)smallPhoto{
     if (_smallPhoto == nil) return @"";
     return _smallPhoto;

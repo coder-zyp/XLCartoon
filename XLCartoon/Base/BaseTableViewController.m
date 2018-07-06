@@ -23,13 +23,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.backgroundColor = COLOR_SYSTEM_GARY;
     self.tableView.tableFooterView = [UIView new];
-
 }
 
 
@@ -142,7 +139,7 @@
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: forIndexPath:indexPath];
     
     // Configure the cell...
     
